@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content_area %}
+	<div class="card">
+		<div class="card-header pb-0">
+			<div class="search-filters mb-3">
+				<form method="get" action="{% url 'categoty_list_place_tm' %}">
+					<div class="row g-5 align-items-stretch">
+						<!--  Поле ввода для категории с чекбоксами -->
+						<div class="col-auto">
+							<div class="dropdown h-100">
+								<button class="btn btn-outline-secondary dropdown-toggle h-100" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+									Select Category
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+									{% for category in categories %}
+										<li>
+											<div class="form-check my-1">
+												<input class="form-check-input ms-2" type="checkbox" name="category" value="{{ category.slug }}" id="category-{{ category.id }}"
+													   {% if category.slug in category_filter %}checked{% endif %}>
+												<label class="form-check-label ms-2" for="category-{{ category.id }}">
+													{{ category.name }}
+												</label>
+											</div>
+										</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+
+
+						<!-- Поле ввода для страны с чекбоксами -->
+						<div class="col-auto">
+							<div class="dropdown h-100">
+								<button class="btn btn-outline-secondary dropdown-toggle h-100" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+									Select Country
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+									{% for country in countries %}
+										<li>
+											<div class="form-check  my-1">
+												<input class="form-check-input ms-2" type="checkbox" name="country" value="{{ country.slug }}" id="country-{{ country.id }}"
+													   {% if country.slug in country_filter %}checked{% endif %}>
+												<label class="form-check-label ms-2" for="country-{{ country.id }}">
+													{{ country.full_name }}
+												</label>
+											</div>
+										</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					
+						<!-- Поля ввода для поиска -->
+						<div class="col-auto">
+							<input type="text" name="state" class="form-control h-100" placeholder="Search by State" value="{{ request.GET.state }}">
+						</div>
+						<div class="col-auto">
+							<input type="text" name="city" class="form-control h-100" placeholder="Search by City" value="{{ request.GET.city }}">
+						</div>
+						<div class="col-auto">
+							<input type="text" name="postcode" class="form-control h-100" placeholder="Search by Postcode" value="{{ request.GET.postcode }}">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary h-100">Search</button>
+						</div>
+					</div>				
+				</form>
+			</div>			
+		</div>
+
+		<div class="card-body">
+			{% include "components/list_place_template.html" %}
+		</div>
+	</div>
+{% endblock content_area %}

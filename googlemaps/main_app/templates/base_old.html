@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <!-- required meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- #keywords -->
+    <meta name="keywords" content="boot, Bootstrap, Couponly - Affiliate & Submitting Discounts Coupons HTML Template">
+    <!-- #description -->
+    <meta name="description" content="Couponly - Affiliate & Submitting Discounts Coupons HTML Template">
+    <!-- #title -->
+    <title>Google Maps CRM</title>
+    <!-- #favicon -->
+    <link rel="shortcut icon" href="{% static 'images/fav.png' %}" type="image/x-icon">
+    <!-- ==== css dependencies start ==== -->
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+
+    {% block import_css %}
+    {% endblock import_css %}
+</head>
+
+<body>
+
+    <!-- start preloader -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <!-- end preloader -->
+
+    <!-- Scroll To Top Start-->
+    <div class="scroll-wrapper d-flex justify-content-center p-2 cus-z2 rounded-pill position-fixed transition cus-border border b-second">
+        <button class="scrollToTop s3-bg-color d-center flex-column rounded-circle" aria-label="scroll Bar Button">
+            <span class="d-center n1-color fs-five">
+                <i class="ph ph-caret-double-up"></i>
+            </span>
+        </button>
+    </div>
+    <!-- Scroll To Top End -->
+
+    {% comment %} <!-- Start Custom Cursor -->
+    <div class="mouse-follower">
+        <span class="cursor-outline"></span>
+        <span class="cursor-dot"></span>
+    </div>
+    <!-- End Custom Cursor --> {% endcomment %}
+
+    <!-- header-section start -->
+    <header class="header-section">
+        <!-- top header start -->
+        <div class="container">
+            <div class="top-header py-4 py-md-6 mt-0 mt-lg-6">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-xxl-2">
+                        <a href="{% url 'index' %}" class="nav-brand d-none d-lg-flex align-items-center gap-2">
+                            <img src="{% static 'images/logo.png' %}" alt="logo">
+                        </a>
+                    </div>
+                    <div class="col-lg-9 col-xxl-10 d-center gap-3 gap-md-4">
+                        <div class="input-area w-100 n1-bg-color rounded-pill p-2 transition cus-border border d-none d-sm-block">
+                            <form action="#" class="row">
+                                <div class="col-sm-12 d-center justify-content-between">
+                                    <div class="input-single w-100">
+                                        <input type="text" placeholder="Search hare..." class="px-3 px-md-4 w-100">
+                                    </div>
+                                    <button class="box-style box-third rounded-circle">
+                                        <span class="d-center fs-seven">
+                                            <i class="ph ph-magnifying-glass"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="v-line d-center position-relative d-none d-sm-flex"></span>
+                        <div class="auth-area d-flex gap-4">
+                            <a href="sign-in.html" class="box-style box-second gap-2 gap-md-3 rounded-pill py-2 py-md-3 px-5 px-md-7 d-center first-alt bg-transparent">
+                                <span class="fs-six text-nowrap">Sign in</span>
+                                <span class="d-center fs-five">
+                                    <i class="ph ph-arrow-right"></i>
+                                </span>
+                            </a>
+                            <a href="sign-up.html" class="box-style box-second gap-2 gap-md-3 rounded-pill py-2 py-md-3 px-5 px-md-7 d-center">
+                                <span class="fs-six text-nowrap">Sign up</span>
+                                <span class="d-center fs-five">
+                                    <i class="ph ph-arrow-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- top header end -->
+
+        <!-- main header start -->
+        <div class="main-navbar py-3 py-lg-5 mx-0 mx-md-3 n1-bg-color">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar-custom">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a href="index.html" class="nav-brand d-block d-lg-none">
+                                <img class="d-none d-md-block" src="{% static 'images/logo.png' %}" alt="logo">
+                                <img class="d-block d-md-none" src="{% static 'images/fav.png' %}" alt="logo">
+                            </a>
+                            <div class="d-flex gap-6">
+                                <div class="switch-wrapper-top d-flex d-lg-none"></div>
+                                <button class="navbar-toggle-btn d-block d-lg-none" type="button">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="navbar-toggle-item">
+                            <div class="d-flex gap-5 flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between mt-5 mt-lg-0">
+                                <a href="index.html" class="navbar-brand logo">
+                                    <img class="w-100" src="{% static '' %}images/fav.png" alt="logo">
+                                </a>
+                                <ul class="custom-nav d-lg-flex d-grid gap-3 gap-lg-4">
+                                    <li class="menu-item position-relative">
+                                        <button class="position-relative pe-4 cus-z1 slide-vertical" data-splitting>
+                                            Home
+                                        </button>
+                                        <ul class="sub-menu p-lg-5">
+                                            <li class="menu-link py-1">
+                                                <a href="index.html" class="n2-color slide-horizontal" data-splitting>Home One</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="index-2.html" class="n2-color slide-horizontal" data-splitting>Home Two</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="index-3.html" class="n2-color slide-horizontal" data-splitting>Home Three</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="index-4.html" class="n2-color slide-horizontal" data-splitting>Home Four</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="index-5.html" class="n2-color slide-horizontal" data-splitting>Home Five</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item position-relative">
+                                        <button class="position-relative pe-4 cus-z1 slide-vertical" data-splitting>
+                                            Browse Coupons
+                                        </button>
+                                        <ul class="sub-menu p-lg-5">
+                                            <li class="menu-link py-1">
+                                                <a href="coupon-style.html" class="n2-color slide-horizontal" data-splitting>Coupon</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="coupon-style-2.html" class="n2-color slide-horizontal" data-splitting>Coupon two</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="submit-coupon.html" class="n2-color slide-horizontal" data-splitting>Submit Coupon</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item position-relative">
+                                        <button class="position-relative pe-4 cus-z1 slide-vertical" data-splitting>
+                                            Stores
+                                        </button>
+                                        <ul class="sub-menu p-lg-5">
+                                            <li class="menu-link py-1">
+                                                <a href="stores-style.html" class="n2-color slide-horizontal" data-splitting>Stores</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-style-2.html" class="n2-color slide-horizontal" data-splitting>Stores Two</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-style-3.html" class="n2-color slide-horizontal" data-splitting>Stores Three</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-style-4.html" class="n2-color slide-horizontal" data-splitting>Stores Four</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-style-5.html" class="n2-color slide-horizontal" data-splitting>Stores Five</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-style-6.html" class="n2-color slide-horizontal" data-splitting>Stores Six</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-details.html" class="n2-color slide-horizontal" data-splitting>Stores Details</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="stores-details-2.html" class="n2-color slide-horizontal" data-splitting>Stores Details Two</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item position-relative">
+                                        <button class="position-relative pe-4 cus-z1 slide-vertical" data-splitting>
+                                            Categories
+                                        </button>
+                                        <ul class="sub-menu p-lg-5">
+                                            <li class="menu-link py-1">
+                                                <a href="categories-style.html" class="n2-color slide-horizontal" data-splitting>Categories</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="categories-style-2.html" class="n2-color slide-horizontal" data-splitting>Categories two</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item position-relative">
+                                        <button class="position-relative pe-4 cus-z1 slide-vertical" data-splitting>
+                                            Pages
+                                        </button>
+                                        <ul class="sub-menu p-lg-5">
+                                            <li class="menu-link py-1">
+                                                <a href="about-us.html" class="n2-color slide-horizontal" data-splitting>About Us</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="faqs.html" class="n2-color slide-horizontal" data-splitting>Faqs</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="contact.html" class="n2-color slide-horizontal" data-splitting>Contact</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="earn-and-share.html" class="n2-color slide-horizontal" data-splitting>Earn & Share</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="sign-up.html" class="n2-color slide-horizontal" data-splitting>Sign Up</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="sign-in.html" class="n2-color slide-horizontal" data-splitting>Sign In</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="privacy-policy.html" class="n2-color slide-horizontal" data-splitting>Privacy Policy</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="terms-conditions.html" class="n2-color slide-horizontal" data-splitting>Terms Conditions</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="error-404.html" class="n2-color slide-horizontal" data-splitting>Error 404</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item position-relative">
+                                        <button class="position-relative pe-4 cus-z1 slide-vertical" data-splitting>
+                                            Blog
+                                        </button>
+                                        <ul class="sub-menu p-lg-5">
+                                            <li class="menu-link py-1">
+                                                <a href="blog.html" class="n2-color slide-horizontal" data-splitting>Blog</a>
+                                            </li>
+                                            <li class="menu-link py-1">
+                                                <a href="blog-details.html" class="n2-color slide-horizontal" data-splitting>Blog Details</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="right-area d-none d-lg-flex gap-4">
+                                    <span class="v-line d-center"></span>
+                                    <button class="d-center" data-bs-toggle="modal" data-bs-target="#submitCoupon">
+                                        <span class="d-center fs-four">
+                                            <i class="ph ph-tag"></i>
+                                        </span>
+                                    </button>
+                                    <span class="v-line d-center"></span>
+                                    <a href="stores-style-6.html" class="d-center">
+                                        <span class="d-center fs-four">
+                                            <i class="ph ph-heart-straight"></i>
+                                        </span>
+                                    </a>
+                                    <span class="v-line d-center"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- main header end -->
+    </header>
+    <!-- header-section end -->
+
+    <!-- banner section start-->
+    <section class="banner-section index-one overflow-hidden position-relative mx-2 mx-md-4 mx-xl-6 mt-2 mt-md-4 mt-xl-6 s1-2nd-bg-color rounded-3 cus-border border">
+        <div class="container position-relative pt-20 mt-10 mt-md-20">
+            {% comment %} <div class="row g-9 g-lg-0 align-items-center py-12 py-sm-20">
+                <div class="col-lg-6 pe-4 pe-md-10">
+                    <div class="d-grid gap-4 gap-md-6 position-relative cus-z1">
+                        <h2 class="display-four n17-color">Categories Style 02</h2>
+                        <div class="breadcrumb-area">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb second position-relative m-0 d-center justify-content-start gap-2 gap-md-3">
+                                    <li class="breadcrumb-item d-flex align-items-center fs-seven"><a href="index.html" class="n17-color">Categories</a></li>
+                                    <li class="breadcrumb-item d-flex align-items-center fs-seven active" aria-current="page"><span class="fw-mid f5-color">Style 02</span></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-4 pe-md-10 d-none d-md-flex">
+                    <div class="img-area position-absolute end-0 bottom-0">
+                        <img src="{% static '' %}images/banner-illus-10.png" alt="img">
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </section>
+    <!-- banner section end -->
+
+    <!-- Modal Items start -->
+    <div class="modal fade" id="submitCoupon" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered cmn-modal first-modal box-shadow-p2">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0 position-absolute top-0 end-0 cus-z1">
+                    <button type="button" class="d-center fs-six n15-color btn-close opacity-100" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="d-center icon-area box-six p1-2nd-bg-color cus-border border b-twelfth">
+                            <i class="ph ph-x"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body py-6 py-md-8 px-4 px-md-8">
+                    <div class="d-center align-items-start flex-column gap-2 gap-md-3">
+                        <h4 class="n17-color fw-mid text-start mb-2 px-8 px-md-0">Submit Coupon</h4>
+                        <span class="v-line w-100 position-relative d-center f-width py-3"></span>
+                        <div class="d-center flex-wrap justify-content-start gap-6 gap-md-8">
+                            <label class="single-radio position-relative justify-content-between">
+                                <input type="radio" name="exclusive" class="d-none" checked>
+                                <span class="checkmark rounded-circle transition d-center position-absolute start-0"></span> 
+                                <span class="title-area ms-8">Is Exclusive?</span>
+                            </label>
+                            <label class="single-radio position-relative justify-content-between">
+                                <input type="radio" name="exclusive" class="d-none">
+                                <span class="checkmark rounded-circle transition d-center position-absolute start-0"></span> 
+                                <span class="title-area ms-8">None Exclusive?</span>
+                            </label>
+                        </div>
+                        <form action="#" class="row gy-3 gy-md-5 pt-3 pt-md-4 cus-z1 position-relative">
+                            <div class="col-md-12">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select rtl-init third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Store *</span>
+                                        <select class="select-two">
+                                            <option value="0">Select Store</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select rtl-init third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Category *</span>
+                                        <select class="select-two">
+                                            <option value="0">Select Category</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Coupon Code *</span>
+                                        <input type="text" placeholder="Enter code..." class="px-2 w-100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select rtl-init third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Coupon Type *</span>
+                                        <select class="select-two">
+                                            <option value="0">Select Option</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                            <option value="5">Option 5</option>
+                                            <option value="6">Option 6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Coupon Title *</span>
+                                        <input type="text" placeholder="Enter state..." class="px-2 w-100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Expire Date *</span>
+                                        <input type="text" class="datepicker w-100" placeholder="Select Date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-area rounded-pill cus-border border b-seventh transition">
+                                    <div class="single-select third w-100 position-relative p-1 p-md-2">
+                                        <label class="single-radio position-relative d-center justify-content-start gap-3 gap-md-4">
+                                            <input type="file" name="upload-file" class="d-none">
+                                            <span class="box-style box-second second-alt rounded-pill py-2 py-md-3 px-5 px-md-7 d-center">
+                                                <span class="d-center fs-seven">Choose File</span>
+                                            </span>
+                                            <span class="title-area d-none d-sm-flex">Chosen Featured image</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-area rounded-5 cus-border border b-seventh transition">
+                                    <div class="single-select third w-100 position-relative px-4 px-md-6 py-3 py-md-4">
+                                        <span class="label position-absolute fs-nine n15-color n1-bg-color start-0 px-1 px-md-2 mx-3 mx-md-4">Coupon Description *</span>
+                                        <textarea placeholder="Say something..." class="w-100"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 pt-3 pt-md-4">
+                                <div class="btn-area d-center justify-content-start gap-3 gap-md-4">
+                                    <button type="button" class="box-style box-second gap-2 gap-md-3 rounded-pill py-2 py-md-3 px-5 px-md-7 d-center">
+                                        <span class="fs-six text-nowrap">Submit Coupons</span>
+                                    </button>
+                                    <span class="box-style box-second first-alt gap-2 gap-md-3 rounded-pill py-2 py-md-3 px-5 px-md-7 d-center bg-transparent" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="fs-six text-nowrap transition">Cancel</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="getCouponCode" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered cmn-modal first-modal">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0 position-absolute top-0 end-0 cus-z1">
+                    <button type="button" class="d-center fs-six n15-color btn-close opacity-100" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="d-center icon-area box-six p1-2nd-bg-color cus-border border b-twelfth">
+                            <i class="ph ph-x"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0 py-6 py-md-0">
+                    <div class="d-center flex-column gap-2 gap-md-3 py-3 py-md-5">
+                        <h5 class="n17-color fw-mid text-center mb-2 px-8 px-md-0">30% Off All Beauty Products</h5>
+                        <div class="row px-2 px-md-0 justify-content-center">
+                            <div class="col-xl-10">
+                                <div class="cmn-btn btn-overlay border-dash rounded-pill w-100 d-center input-area">
+                                    <input type="text" value="FGFKG6589895AF" placeholder="Coupon Code" readonly class="p1-color fs-seven fw-bold coupon-code w-100 px-6 px-md-12 d-center">
+                                    <button class="box-style box-second rounded-pill border-stb-none py-3 py-md-4 px-6 px-md-12 d-center">
+                                        <span class="d-center fs-seven fw-bold">Copy</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="f11-color fw-mid">Continue to us.couponly.com • <a href="terms-conditions.html" class="n15-color fw-mid">Terms</a></p>
+                    </div>
+                    <div class="main-content cus-border border-top border-bottom b-seventh d-grid gap-3 gap-md-4 px-3 px-md-6 py-4 py-md-5">
+                        <p class="fs-eight"><span class="fw-mid fs-eight">Offer's Details: </span> Click here to shop at Legoland and get Up to $30 Off California Brick-or-Treat Tickets. No code required for this offer. Your shopping cart will receive discounts only if the deal is used at legoland.com before 27 Oct 2024.</p>
+                        <p class="fs-eight"><span class="fw-mid fs-eight">Expires: </span>In 4 weeks</p>
+                        <div class="terms">
+                            <p class="fs-eight"><span class="fw-mid fs-eight">Terms:</span></p>
+                            <ul class="d-grid gap-1 ul-dots fs-eight ms-6">
+                                <li>Exclusions may apply.</li>
+                                <li>Verify the website for further details.</li>
+                                <li>The merchant may apply stock limitations for this offer.</li>
+                                <li>Discount deals can be limited by the seller at any given time.</li>
+                                <li>You can save using this deal only for online purchases.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bottom-area d-center gap-1 gap-md-2 flex-wrap py-3 py-md-5">
+                        <span class="fw-mid fs-seven me-2">Did it work?</span>
+                        <button class="s2-3rd-bg-color rounded-2 d-center gap-1 px-2 px-md-3 py-1">
+                            <span class="d-center fs-six s2-color">
+                                <i class="ph ph-thumbs-up"></i>
+                            </span>
+                            <span class="s2-color fw-bold">Yes</span>
+                        </button>
+                        <button class="f13-2nd-bg-color rounded-2 d-center gap-1 px-2 px-md-3 py-1">
+                            <span class="d-center fs-six f13-color">
+                                <i class="ph ph-thumbs-down"></i>
+                            </span>
+                            <span class="f13-color fw-bold">No</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Items end -->
+
+    <!-- Section Sidebar start-->
+    <div class="section-sidebar pb-10">
+        <div class="mx-20 mt-5">
+            <div class="row">
+                {% block main_content %}
+                
+                {% endblock main_content %}
+            </div>
+        </div>
+    </div>
+    <!-- Section Sidebar end -->
+
+    <!-- ==== js dependencies start ==== -->
+    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <script src="{% static 'js/plugins/plugin-custom.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block import_js %}
+    {% endblock import_js %}
+
+</body>
+
+</html>
