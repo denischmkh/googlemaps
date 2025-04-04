@@ -87,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'google_maps_crm_db',
-        'USER': 'admin',
-        'PASSWORD': 'gthyfrde',
+        'USER': 'postgres',
+        'PASSWORD': 'denis2004',
         'HOST': 'localhost',
         'PORT': '5432',
     }

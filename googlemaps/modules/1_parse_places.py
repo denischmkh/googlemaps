@@ -12,7 +12,7 @@ import psycopg2
 
 # Подключение к базе данных
 connection = psycopg2.connect(
-    dbname="db_dump",
+    dbname="dump_db",
     user="postgres",
     password="denis2004",
     host="localhost"
