@@ -1,5 +1,6 @@
 import csv
 import json
+import re
 from datetime import datetime
 
 from django.db import IntegrityError
@@ -43,38 +44,46 @@ for table in tables:
             del row_dict['id']
         pprint(row_dict)
         try:
-            country, created = Country.objects.get_or_create(full_name=row_dict['country'])
-        except AttributeError:
-            print('skip')
-            continue
+            if bool(re.fullmatch(r'[A-Z]{2} \d{5}', row_dict.get('country'))):
+                raise AttributeError
+            else:
+                country, created = Country.objects.get_or_create(full_name=row_dict['country'])
+
+        except (AttributeError, TypeError):
+            country = None
         try:
             state, created = State.objects.get_or_create(
                 full_name=row_dict.get('state'),
                 country=country
             )
-
+        except:
+            state = None
+        try:
             city, created = City.objects.get_or_create(
                 full_name=row_dict.get('city'),
                 country=country,
                 state=state if row_dict.get('state') else None
             )
+        except:
+            city = None
+        try:
             category, created = Category.objects.get_or_create(
                 name=row_dict.get('category')
             )
-        except AttributeError:
-            print('Skip')
-            continue
+        except:
+            category = None
+
         if not row_dict.get('name'):
             print('No name')
             continue
-        if len(row_dict.get('city')) < 1:
-            print('No city')
-            continue
+        try:
+            postcode = int(row_dict.get('zip_code', None))
+        except (TypeError, ValueError):
+            postcode = None
 
         place, created = Place.objects.get_or_create(
             category=category,
             name=row_dict.get('name'),
-
             rating=float(row_dict.get('rating')) if row_dict.get('rating') else None,
             num_reviews=int(row_dict.get('num_reviews').replace(',', "")) if row_dict.get('num_reviews') else None,
             reviews_list=json.dumps(row_dict.get('reviews_list')) if row_dict.get('reviews_list') else None,
@@ -83,7 +92,9 @@ for table in tables:
             full_address=row_dict.get('full_address', None),
             address=row_dict.get('address', None),
             located_in=row_dict.get('located_in', None),
-            postcode=row_dict.get('postcode', None),
+
+            postcode=postcode,
+
             lat=float(row_dict.get('lat')) if row_dict.get('lat') else None,
             lng=float(row_dict.get('lng')) if row_dict.get('lng') else None,
             place_type=row_dict.get('place_type', None),

@@ -25,7 +25,7 @@ def categoty_list_place_tm(request):
     country_filter = request.GET.getlist("country")  # Получаем список выбранных стран
     category_filter = request.GET.getlist("category")
     
-    # Получаем все страны для чекбоксов
+
     countries = Country.objects.all().order_by("full_name")
 
     # Получаем все категории для чекбоксов
