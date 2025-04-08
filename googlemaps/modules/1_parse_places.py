@@ -1,6 +1,7 @@
 import csv
 import json
 import re
+import sys
 from datetime import datetime
 
 from django.db import IntegrityError
@@ -11,13 +12,18 @@ from main_app.models.countries import Country, City, State
 from main_app.models.categories import Category
 import psycopg2
 
+
+
+
+
 # Подключение к базе данных
 connection = psycopg2.connect(
-    dbname="dump_db",
+    dbname="dump_logistic_company",
     user="postgres",
     password="denis2004",
     host="localhost"
 )
+
 
 tables = ['architect', 'dentist', 'dermatologist', 'engineer', 'lawyer', 'pharmacist', 'veterinary']
 
@@ -25,63 +31,87 @@ tables = ['architect', 'dentist', 'dermatologist', 'engineer', 'lawyer', 'pharma
 
 cursor = connection.cursor()
 # Запрос к таблице
-for table in tables:
-    query = f"SELECT * FROM parser_app_place_{table};"
+# for table in tables:
+query = f"SELECT * FROM place_logistics_company;"
 
-    # Выполнение запроса
-    cursor.execute(query)
+# Выполнение запроса
+cursor.execute(query)
 
-    # Получение названий столбцов (используем cursor.description)
-    column_names = [desc[0] for desc in cursor.description]
+# Получение названий столбцов (используем cursor.description)
+column_names = [desc[0] for desc in cursor.description]
 
-    # Получение всех строк из таблицы
-    rows = cursor.fetchall()
+# Получение всех строк из таблицы
+rows = cursor.fetchall()
 
-    # Преобразование строк в словари
-    for row in rows:
-        row_dict = dict(zip(column_names, row))
-        if 'id' in row_dict:
-            del row_dict['id']
-        pprint(row_dict)
-        try:
-            if bool(re.fullmatch(r'[A-Z]{2} \d{5}', row_dict.get('country'))):
-                raise AttributeError
-            else:
-                country, created = Country.objects.get_or_create(full_name=row_dict['country'])
+places_to_create = []
 
-        except (AttributeError, TypeError):
-            country = None
-        try:
+# Проходим по всем строкам данных
+for row in rows:
+    row_dict = dict(zip(column_names, row))
+
+    # Удаляем поле 'id', если оно есть
+    if 'id' in row_dict:
+        del row_dict['id']
+
+    pprint(row_dict)
+
+    # Обработка страны
+    try:
+        if bool(re.fullmatch(r'[A-Z]{2} \d{5}', row_dict.get('country'))):
+            raise AttributeError
+        else:
+            country, created = Country.objects.get_or_create(full_name=row_dict['country'])
+
+    except (AttributeError, TypeError, IntegrityError):
+        country = None
+
+    # Обработка штата
+    try:
+        if country:  # Проверяем, что country существует
             state, created = State.objects.get_or_create(
                 full_name=row_dict.get('state'),
                 country=country
             )
-        except:
+        else:
             state = None
-        try:
+    except (AttributeError, IntegrityError):
+        state = None
+
+    # Обработка города
+    try:
+        if country and len(row_dict.get('city')) != 0:
             city, created = City.objects.get_or_create(
                 full_name=row_dict.get('city'),
                 country=country,
                 state=state if row_dict.get('state') else None
             )
-        except:
+        else:
             city = None
-        try:
-            category, created = Category.objects.get_or_create(
-                name=row_dict.get('category')
-            )
-        except:
-            category = None
+    except (AttributeError, IntegrityError, TypeError):
+        city = None
 
-        if not row_dict.get('name'):
-            print('No name')
-            continue
-        try:
-            postcode = int(row_dict.get('zip_code', None))
-        except (TypeError, ValueError):
-            postcode = None
+    # Обработка категории
+    try:
+        category, created = Category.objects.get_or_create(
+            name=row_dict.get('category')
+        )
+    except (AttributeError, IntegrityError):
+        category = None
 
-        place, created = Place.objects.get_or_create(
+    # Пропуск, если нет имени
+    if not row_dict.get('name') or row_dict.get('name') == '':
+        print('No name')
+        continue
+
+    # Обработка почтового индекса
+    try:
+        postcode = int(row_dict.get('zip_code', None))
+    except (TypeError, ValueError):
+        postcode = None
+
+    # Создание объекта Place, если все зависимые объекты существуют
+    if category and city:  # Проверяем, что зависимые объекты существуют
+        place = Place(
             category=category,
             name=row_dict.get('name'),
             rating=float(row_dict.get('rating')) if row_dict.get('rating') else None,
@@ -92,9 +122,7 @@ for table in tables:
             full_address=row_dict.get('full_address', None),
             address=row_dict.get('address', None),
             located_in=row_dict.get('located_in', None),
-
             postcode=postcode,
-
             lat=float(row_dict.get('lat')) if row_dict.get('lat') else None,
             lng=float(row_dict.get('lng')) if row_dict.get('lng') else None,
             place_type=row_dict.get('place_type', None),
@@ -113,6 +141,13 @@ for table in tables:
             status=row_dict.get('status', None),
             created_at=row_dict.get('created_at', None)
         )
+
+        places_to_create.append(place)
+    else:
+        print(f"Skipping place due to missing category or city: {row_dict.get('name')}")
+
+if places_to_create:
+    Place.objects.bulk_create(places_to_create)
 
 
 
