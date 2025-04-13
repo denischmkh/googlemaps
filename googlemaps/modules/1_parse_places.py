@@ -18,21 +18,20 @@ import psycopg2
 
 # Подключение к базе данных
 connection = psycopg2.connect(
-    dbname="dump_logistic_company",
+    dbname="google_maps_project_2",
     user="postgres",
     password="denis2004",
     host="localhost"
 )
 
 
-tables = ['architect', 'dentist', 'dermatologist', 'engineer', 'lawyer', 'pharmacist', 'veterinary']
 
 # Создание курсора
 
 cursor = connection.cursor()
 # Запрос к таблице
 # for table in tables:
-query = f"SELECT * FROM place_logistics_company;"
+query = f"select * from place_dietitian;"
 
 # Выполнение запроса
 cursor.execute(query)

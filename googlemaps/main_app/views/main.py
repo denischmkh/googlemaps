@@ -66,7 +66,7 @@ def categoty_list_place_tm(request):
         "categories": categories,
         "countries": countries,
     }
-    return render(request, 'list_place.html', context)
+    return render(request, 'list_doctors.html', context)
 
 def place_full_info(request, name_slug):
     place_obj = Place.objects.get(slug=name_slug)
