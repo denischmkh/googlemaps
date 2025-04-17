@@ -1,1 +1,3 @@
 /googlemaps/files/*
+__pycache__/
+*.pyc
