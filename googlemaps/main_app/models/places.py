@@ -15,39 +15,39 @@ from django.utils.text import slugify
 from unidecode import unidecode
 
 class Place(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="places", verbose_name="Category")
-    name = models.CharField(max_length=250, verbose_name="Place Name")
-    slug = models.SlugField(max_length=255, unique=True, blank=True, null=True, verbose_name="Place Slug")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="places", verbose_name="Category")#
+    name = models.CharField(max_length=250, verbose_name="Place Name") #
+    slug = models.SlugField(max_length=255, unique=True, blank=True, null=True, verbose_name="Place Slug")#
 
-    rating = models.FloatField(default=0, null=True, blank=True, verbose_name="Rating",validators=[MinValueValidator(0), MaxValueValidator(5)])
-    num_reviews = models.IntegerField(default=0, null=True, blank=True, verbose_name="Number of Reviews")
+    rating = models.FloatField(default=0, null=True, blank=True, verbose_name="Rating",validators=[MinValueValidator(0), MaxValueValidator(5)])#
+    num_reviews = models.IntegerField(default=0, null=True, blank=True, verbose_name="Number of Reviews")#
     reviews_list = models.JSONField(null=True, blank=True, verbose_name="Reviews")
 
     about = models.TextField(blank=True, null=True, verbose_name="About Place")
-    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="places", verbose_name="City")
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True, related_name="places", verbose_name="City")#
 
-    full_address = models.CharField(max_length=512, null=True, blank=True, verbose_name="Full Address")
+    full_address = models.CharField(max_length=512, null=True, blank=True, verbose_name="Full Address")#
     address = models.CharField(max_length=250, null=True, blank=True, verbose_name="Street Address")
-    located_in = models.CharField(max_length=250, null=True, blank=True, verbose_name="Located In")
+    located_in = models.CharField(max_length=250, null=True, blank=True, verbose_name="Located In")#
     postcode = models.IntegerField(null=True, blank=True, verbose_name="Postcode")
 
-    lat = models.FloatField(null=True, blank=True, verbose_name="Latitude")
-    lng = models.FloatField(null=True, blank=True, verbose_name="Longitude")
+    lat = models.FloatField(null=True, blank=True, verbose_name="Latitude")#
+    lng = models.FloatField(null=True, blank=True, verbose_name="Longitude")#
 
-    place_type = models.CharField(max_length=100, null=True, verbose_name="Type of Place")
-    open_hours = models.CharField(null=True, blank=True, verbose_name="Opening Hours")
-    open_24_7 = models.BooleanField(default=False, verbose_name="Open 24/7")
+    place_type = models.CharField(max_length=100, null=True, verbose_name="Type of Place")#
+    open_hours = models.CharField(null=True, blank=True, verbose_name="Opening Hours")#
+    open_24_7 = models.BooleanField(default=False, verbose_name="Open 24/7")#
 
     phone = models.CharField(
         max_length=32,
         null=True,
         blank=True,
         verbose_name="Phone Number",
-    )
-    email = models.EmailField(null=True, blank=True, verbose_name="Email Address")
+    )#
+    email = models.EmailField(null=True, blank=True, verbose_name="Email Address")#
 
     website = models.URLField(max_length=1000,null=True, blank=True, verbose_name="Website", validators=[URLValidator()])
-    clear_website = models.CharField(max_length=250, null=True, verbose_name="Website Domain")
+    clear_website = models.CharField(max_length=250, null=True, verbose_name="Website Domain")#
 
     facebook = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Facebook")
     instagram = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Instagram")
@@ -55,7 +55,7 @@ class Place(models.Model):
     youtube = models.URLField(max_length=10000, null=True, blank=True, verbose_name="YouTube")
     twitter = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Twitter")
 
-    link = models.CharField(max_length=10000, null=True, verbose_name="Google Maps Link")
+    link = models.CharField(max_length=10000, null=True, verbose_name="Google Maps Link")#
 
     status = models.CharField(
         max_length=20,

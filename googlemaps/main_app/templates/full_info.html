@@ -971,6 +971,41 @@
                                                             <span class="n15-color fs-six fw-mid link-info">Link</span>
                                                         </a>
                                                     </li>
+                                                    <li><span class="v-line w-100 position-relative d-center f-width"></span></li>
+                                                    <li class="d-grid gap-1 gap-md-2">
+                                                        <span class="n15-color fs-eight">City:</span>
+                                                        <span class="n15-color fs-six fw-mid">{% if place_obj.city %}{{place_obj.city}}{% else %}-{% endif %}</span>
+                                                    </li>
+                                                    <li><span class="v-line w-100 position-relative d-center f-width"></span></li>
+                                                    <li class="d-grid gap-1 gap-md-2">
+                                                        <span class="n15-color fs-eight">Address:</span>
+                                                        <span class="n15-color fs-six fw-mid">{% if place_obj.full_address %}{{place_obj.full_address}}{% else %}-{% endif %}</span>
+                                                    </li>
+                                                    {% if place_obj.located_in %}
+                                                    <li><span class="v-line w-100 position-relative d-center f-width"></span></li>
+                                                    <li class="d-grid gap-1 gap-md-2">
+                                                        <span class="n15-color fs-eight">Located in:</span>
+                                                        <span class="n15-color fs-six fw-mid">{{place_obj.located_in}}</span>
+                                                    </li>
+                                                    {% endif %}
+                                                    <li><span class="v-line w-100 position-relative d-center f-width"></span></li>
+                                                    <li class="d-grid gap-1 gap-md-2">
+                                                        <span class="n15-color fs-eight">Postcode:</span>
+                                                        <span class="n15-color fs-six fw-mid">{{place_obj.postcode}}</span>
+                                                    </li>
+                                                    <li><span class="v-line w-100 position-relative d-center f-width"></span></li>
+                                                    <li class="d-grid gap-1 gap-md-2">
+                                                        <span class="n15-color fs-eight">Open Hours:</span>
+                                                        <span class="n15-color fs-six fw-mid">{{place_obj.open_hours}}</span>
+                                                    </li>
+                                                    {% if place_obj.website %}
+                                                    <li><span class="v-line w-100 position-relative d-center f-width"></span></li>
+                                                    <li class="d-grid gap-1 gap-md-2">
+                                                        <span class="n15-color fs-eight">Located in:</span>
+                                                        <span class="n15-color fs-six fw-mid">{{place_obj.website}}</span>
+                                                    </li>
+                                                    {% endif %}
+
                                                 </ul>
                                             </div>
                                         </div>

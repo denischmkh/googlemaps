@@ -1,0 +1,17 @@
+body, html {
+    overflow: auto;
+}
+
+.content {
+    padding-right: 200px;
+    padding-left: 200px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+#map {
+    width: 50%;
+    height: auto;
+}

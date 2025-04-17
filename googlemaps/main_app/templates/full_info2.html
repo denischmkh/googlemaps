@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="../../../../global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/all.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'assets/css/styles.css' %}" rel="stylesheet" type="text/css">
+	<!-- Font Awesome CDN (версия 6.x) -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<!-- Bootstrap 5 (CDN) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+
+
+
+
+
+
+</head>
+<body>
+<div class="navbar navbar-dark navbar-expand-xl rounded">
+										<div class="container-fluid">
+											<div class="navbar-brand">
+												<a href="index.html" class="d-inline-flex align-items-center">
+													<img src="../../../assets/images/logo_icon.svg" alt="">
+													<h4 class="d-none d-sm-inline-block text-white lh-1 mb-0 ms-3">Limitless</h4>
+												</a>
+											</div>
+
+											<div class="d-xl-none ms-2">
+												<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-demo1-mobile">
+													<i class="ph-squares-four"></i>
+												</button>
+											</div>
+
+											<div class="navbar-collapse collapse order-2 order-xl-1" id="navbar-demo1-mobile">
+												<ul class="navbar-nav mt-2 mt-xl-0">
+													<li class="nav-item">
+														<a href="#" class="navbar-nav-link rounded">Link</a>
+													</li>
+													<li class="nav-item dropdown">
+														<a href="#" class="navbar-nav-link rounded dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
+														<div class="dropdown-menu">
+															<a href="#" class="dropdown-item">Action</a>
+															<a href="#" class="dropdown-item">Another action</a>
+															<a href="#" class="dropdown-item">Something else here</a>
+															<a href="#" class="dropdown-item">One more line</a>
+														</div>
+													</li>
+												</ul>
+											</div>
+
+											<ul class="navbar-nav flex-row order-1 order-xl-2 ms-auto">
+												<li class="nav-item">
+													<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
+														<i class="ph-bell"></i>
+														<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
+													</a>
+												</li>
+												<li class="nav-item">
+													<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded ms-xl-2">
+														<i class="ph-chats"></i>
+													</a>
+												</li>
+												<li class="nav-item nav-item-dropdown-xl dropdown ms-xl-2">
+													<a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown">
+														<div class="status-indicator-container">
+															<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded" alt="">
+															<span class="status-indicator bg-success"></span>
+														</div>
+														<span class="d-none d-xl-inline-block mx-xl-2">Victoria</span>
+													</a>
+
+													<div class="dropdown-menu dropdown-menu-end">
+														<a href="#" class="dropdown-item">Action</a>
+														<a href="#" class="dropdown-item">Another action</a>
+														<a href="#" class="dropdown-item">Something else here</a>
+														<a href="#" class="dropdown-item">One more line</a>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+        <div class="content">
+<style>
+    .icon-big {
+        font-size: 3rem;
+    }
+</style>
+
+
+
+
+
+
+<div class="row">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body bg-success text-white">
+            <div class="d-flex align-items-center">
+                <div class="flex-fill">
+                    <h4 class="mb-0">Flea Market</h4>
+                    <span class="text-white-50">Name</span>
+                </div>
+                <i class="bi bi-shop icon-big ms-3"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body bg-warning text-dark">
+            <div class="d-flex align-items-center">
+                <div class="flex-fill">
+                    <h4 class="mb-0">4,6</h4>
+                    <span class="text-muted">Rating</span>
+                </div>
+                <i class="bi bi-star-fill icon-big ms-3"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body bg-primary text-white">
+            <div class="d-flex align-items-center">
+                <div class="flex-fill">
+                    <h4 class="mb-0">Berlin</h4>
+                    <span class="text-white-50">Located</span>
+                </div>
+                <i class="bi bi-geo-alt-fill icon-big ms-3"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body bg-danger text-white">
+            <div class="d-flex align-items-center">
+                <div class="flex-fill">
+                    <h4 class="mb-0">389,438</h4>
+                    <span class="text-white-50">Total reviews</span>
+                </div>
+                <i class="bi bi-people-fill icon-big ms-3"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <div class="container min-vh-100">
+    <div class="row align-items-start">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body border-top-0">
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Category:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0"><a href="#">Bicycle Store </a></div>
+                    </div>
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Address:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0">3630 Tyburn St</div>
+                    </div>
+
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Place Type:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0">Architect</div>
+                    </div>
+
+                    <div class="d-sm-flex flex-sm-wrap mb-3 mb-3">
+                        <div class="fw-semibold">Open Hours:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0">Closed ⋅ Opens 9 AM</div>
+                    </div>
+
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Phone:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0">+13236682600</div>
+                    </div>
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Email:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0">margarita@diazblueprint.com</div>
+                    </div>
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Website:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0"><a href="#">http://www.diazblueprint.com/</a></div>
+                    </div>
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Look in google:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0"><a href="https://www.google.com.ua/maps/place/Dutton+Architects/data=!4m7!3m6!1s0x80c2b890078ff253:0xff52b4762f5edcae!8m2!3d34.0671911!4d-118.2487556!16s%2Fg%2F1tjz3mv5!19sChIJU_KPB5C4woARrtxeL3a0Uv8?authuser=0&hl=en&rclk=1">Link</a></div>
+                    </div>
+                    <div class="d-sm-flex flex-sm-wrap mb-3">
+                        <div class="fw-semibold">Open 24/7:</div>
+                        <div class="ms-sm-auto mt-1 mt-sm-0"><span class="badge bg-danger rounded-pill ms-auto">No</span><span class="badge bg-teal rounded-pill ms-auto">Yes</span></div>
+                    </div>
+                    <div class="d-flex justify-content-center bg-white py-3">
+  <ul class="list-inline mb-0 d-flex gap-3">
+    <li class="list-inline-item">
+      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
+        <i class="fab fa-youtube fa-2x text-dark"></i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
+        <i class="fab fa-twitter fa-2x text-dark"></i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
+        <i class="fab fa-linkedin fa-2x text-dark"></i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
+        <i class="fab fa-instagram fa-2x text-dark"></i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
+        <i class="fab fa-facebook fa-2x text-dark"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Карта будет в правой колонке -->
+        <div class="col-md-6">
+            <div id="map" style="height: 400px;"></div>
+        </div>
+    </div>
+                <div class="card">
+
+
+								<div class="card-body d-flex flex-column flex-lg-row">
+
+									<div class="flex-fill">
+										<h3 class="mb-1">About</h3>
+										<p>So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily</p>
+
+									</div>
+								</div>
+							</div>
+</div>
+
+</div>
+
+
+
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-nPLbZrYkCGV1+d1Y6N19BuwPWqsK0pglVbLkG0bZp6k="
+    crossorigin=""
+  ></script>
+
+  <script>
+    const map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([51.505, -0.09]).addTo(map)
+      .bindPopup('Я здесь!')
+      .openPopup();
+  </script>
+
+</biv>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/js/app.js' %}"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</body>
+</html>
