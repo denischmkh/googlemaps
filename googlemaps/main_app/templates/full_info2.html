@@ -34,7 +34,7 @@
         <div class="card card-body bg-success text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">Flea Market</h4>
+                    <h4 class="mb-0">{{place_obj.name|default:"Unknown"}}</h4>
                     <span class="text-white-50">Name</span>
                 </div>
                 <i class="bi bi-shop icon-big ms-3"></i>
@@ -46,7 +46,7 @@
         <div class="card card-body bg-warning text-dark">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">4,6</h4>
+                    <h4 class="mb-0">{{place_obj.rating|default:"Unknown"}}</h4>
                     <span class="text-muted">Rating</span>
                 </div>
                 <i class="bi bi-star-fill icon-big ms-3"></i>
@@ -58,7 +58,7 @@
         <div class="card card-body bg-primary text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">Berlin</h4>
+                    <h4 class="mb-0">{{place_obj.city|default:"Unknown"}}</h4>
                     <span class="text-white-50">Located</span>
                 </div>
                 <i class="bi bi-geo-alt-fill icon-big ms-3"></i>
@@ -70,7 +70,7 @@
         <div class="card card-body bg-danger text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">389,438</h4>
+                    <h4 class="mb-0">{{place_obj.num_reviews|default:"Unknown"}}</h4>
                     <span class="text-white-50">Total reviews</span>
                 </div>
                 <i class="bi bi-people-fill icon-big ms-3"></i>
@@ -88,62 +88,94 @@
                     <table class="table">
         <tbody>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Category:</td>
-            <td class="text-start">Bicycle Store</td>
+            <td class="fw-semibold text-start" style="width: 400px;">Category:</td>
+            <td class="text-start">{{ place_obj.category|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Address:</td>
-            <td class="text-start">3630 Tyburn St</td>
+            <td class="fw-semibold text-start" style="width: 400px;">Address:</td>
+            <td class="text-start">{{ place_obj.address|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Place Type:</td>
-            <td class="text-start">Architect</td>
+            <td class="fw-semibold text-start" style="width: 400px;">Place Type:</td>
+            <td class="text-start">{{ place_obj.place_type|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Phone:</td>
-            <td class="text-start">+13236682600</td>
+            <td class="fw-semibold text-start" style="width: 400px;">Phone:</td>
+            <td class="text-start">{{ place_obj.phone|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Email:</td>
-            <td class="text-start">margarita@diazblueprint.com</td>
+            <td class="fw-semibold text-start" style="width: 400px;">Email:</td>
+            <td class="text-start">{{ place_obj.email|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Open 24/7:</td>
-            <td class="text-start"><span class="badge bg-danger rounded-pill ms-auto">No</span></td>
+            <td class="fw-semibold text-start" style="width: 400px;">Open 24/7:</td>
+            <td class="text-start">
+              {% if place_obj.open_24_7 %}
+                <span class="badge bg-success rounded-pill">Yes</span>
+              {% elif place_obj.open_24_7 == False %}
+                <span class="badge bg-danger rounded-pill">No</span>
+              {% else %}
+                -
+              {% endif %}
+            </td>
           </tr>
           <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Website:</td>
-            <td class="text-start">http://www.diazblueprint.com/</td>
+            <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
+            <td class="text-start">{{ place_obj.website|default:"-" }}</td>
           </tr>
         </tbody>
       </table>
                     <div class="d-flex justify-content-center bg-transparent py-3">
   <ul class="list-inline mb-0 d-flex gap-3">
+    {% if place_obj.youtube %}
     <li class="list-inline-item">
-        <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-            <i class="fab fa-youtube fa-lg" style="color: #FF0000;"></i>
-        </div>
+        <a href="{{ place_obj.youtube }}" target="_blank">
+            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+                <i class="fab fa-youtube fa-lg" style="color: #FF0000;"></i>
+            </div>
+        </a>
     </li>
+    {% endif %}
+
+    {% if place_obj.twitter %}
     <li class="list-inline-item">
-        <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-            <i class="fab fa-twitter fa-lg" style="color: #1DA1F2;"></i>
-        </div>
+        <a href="{{ place_obj.twitter }}" target="_blank">
+            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+                <i class="fab fa-twitter fa-lg" style="color: #1DA1F2;"></i>
+            </div>
+        </a>
     </li>
+    {% endif %}
+
+    {% if place_obj.linkedin %}
     <li class="list-inline-item">
-        <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-            <i class="fab fa-linkedin fa-lg" style="color: #0077B5;"></i>
-        </div>
+        <a href="{{ place_obj.linkedin }}" target="_blank">
+            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+                <i class="fab fa-linkedin fa-lg" style="color: #0077B5;"></i>
+            </div>
+        </a>
     </li>
+    {% endif %}
+
+    {% if place_obj.instagram %}
     <li class="list-inline-item">
-        <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-            <i class="fab fa-instagram fa-lg" style="color: #C13584;"></i>
-        </div>
+        <a href="{{ place_obj.instagram }}" target="_blank">
+            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+                <i class="fab fa-instagram fa-lg" style="color: #C13584;"></i>
+            </div>
+        </a>
     </li>
+    {% endif %}
+
+    {% if place_obj.facebook %}
     <li class="list-inline-item">
-        <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-            <i class="fab fa-facebook fa-lg" style="color: #1877F2;"></i>
-        </div>
+        <a href="{{ place_obj.facebook }}" target="_blank">
+            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+                <i class="fab fa-facebook fa-lg" style="color: #1877F2;"></i>
+            </div>
+        </a>
     </li>
+    {% endif %}
 </ul>
 </div>
 
@@ -160,39 +192,19 @@
       <h5 class="fw-semibold mb-4 text-start">Open Hours</h5>
       <table class="table">
         <tbody>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Monday</td>
-            <td class="text-start">9 AM – 6 PM</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Tuesday</td>
-            <td class="text-start">9 AM – 6 PM</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Wednesday</td>
-            <td class="text-start">9 AM – 6 PM</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Thursday</td>
-            <td class="text-start">9 AM – 6 PM</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Friday</td>
-            <td class="text-start">9 AM – 6 PM</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Saturday</td>
-            <td class="text-start">10 AM – 4 PM</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Saturday</td>
-            <td class="text-start"><span class="badge bg-danger rounded-pill">Closed</span></td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="text-start" style="width: 400px;">Sunday</td>
-            <td class="text-start"><span class="badge bg-danger rounded-pill">Closed</span></td>
-          </tr>
-        </tbody>
+  {% for day, hours in open_hours.items %}
+  <tr class="odd mb-3">
+    <td class="fw-semibold text-start" style="width: 400px;">{{ day }}</td>
+    <td class="text-start">
+      {% if hours == 'Closed' %}
+        <span class="badge bg-danger rounded-pill">Closed</span>
+      {% else %}
+        <span class="badge bg-success rounded-pill">{{hours}}</span>
+      {% endif %}
+    </td>
+  </tr>
+{% endfor %}
+</tbody>
       </table>
     </div>
   </div>
@@ -206,9 +218,16 @@
 
 									<div class="flex-fill">
 										<h3 class="fw-semibold mb-4 text-start">About</h3>
-                                            <p class="text-start">
-                                              So slit more darn hey well wore submissive savage this shark aardvark fumed thoughtfully much drank when angelfish so outgrew some alas vigorously therefore warthog superb less oh groundhog less alas gibbered barked some hey despicably with aesthetic hamster jay by luckily
-                                            </p>
+                                           {% for item in parsed_about %}
+                                            <div class="mb-2">
+                                              <h5 class="text-start">{{ item.title }}:</h5>
+                                              <ul class="mb-0 ps-3">
+                                                {% for val in item.values %}
+                                                  <li class="text-start"> {{ val }}</li>
+                                                {% endfor %}
+                                              </ul>
+                                            </div>
+                                          {% endfor %}
 									</div>
 								</div>
 							</div>
@@ -225,17 +244,21 @@
     crossorigin=""
   ></script>
 
-  <script>
-    const map = L.map('map').setView([51.505, -0.09], 13);
+ <script>
+  const lat = {{ place_obj.lat|default:"0" }};
+  const lng = {{ place_obj.lng|default:"0" }};
+  const title = "{{ place_obj.name|default:'Unknown' }}";  <!-- Добавляем кавычки вокруг строки -->
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+  const map = L.map('map').setView([lat, lng], 13);
 
-    L.marker([51.505, -0.09]).addTo(map)
-      .bindPopup('Я здесь!')
-      .openPopup();
-  </script>
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker([lat, lng]).addTo(map)
+    .bindPopup(title)
+    .openPopup();
+</script>
 
 </biv>
 </biv>

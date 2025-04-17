@@ -1,3 +1,8 @@
+import ast
+import json
+from json import JSONDecodeError
+from pprint import pprint
+
 from django.shortcuts import render
 from ..models import *
 
@@ -70,6 +75,32 @@ def categoty_list_place_tm(request):
 
 def place_full_info(request, name_slug):
     place_obj = Place.objects.get(slug=name_slug)
+    try:
+        about = json.loads(place_obj.about)
 
-    context = {"place_obj": place_obj}
+        parsed_items = []
+        for item in about:
+            if ':' in item:
+                key, value_str = item.split(':', 1)
+                try:
+                    values = ast.literal_eval(value_str.strip())
+                    parsed_items.append({
+                        'title': key.strip(),
+                        'values': values
+                    })
+                except Exception:
+                    parsed_items.append({
+                        'title': key.strip(),
+                        'values': [value_str.strip()]
+                    })
+    except JSONDecodeError:
+        parsed_items = []
+    try:
+        open_hours = json.loads(place_obj.open_hours.replace("'", '"'))
+    except JSONDecodeError:
+        open_hours = {}
+
+    context = {"place_obj": place_obj,
+               'parsed_about': parsed_items,
+               'open_hours': open_hours}
     return render(request, 'full_info2.html', context)
