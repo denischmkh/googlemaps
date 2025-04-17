@@ -2,10 +2,6 @@ body, html {
     overflow: auto;
 }
 
-.content-my {
-    padding-right: 200px;
-    padding-left: 200px;
-}
 
 .card-body {
     text-align: center;
