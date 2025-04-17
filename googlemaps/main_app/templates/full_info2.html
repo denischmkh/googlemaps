@@ -98,11 +98,6 @@
                         <div class="ms-sm-auto mt-1 mt-sm-0">Architect</div>
                     </div>
 
-                    <div class="d-sm-flex flex-sm-wrap mb-3 mb-3">
-                        <div class="fw-semibold">Open Hours:</div>
-                        <div class="ms-sm-auto mt-1 mt-sm-0">Closed ⋅ Opens 9 AM</div>
-                    </div>
-
                     <div class="d-sm-flex flex-sm-wrap mb-3">
                         <div class="fw-semibold">Phone:</div>
                         <div class="ms-sm-auto mt-1 mt-sm-0">+13236682600</div>
@@ -123,7 +118,45 @@
                         <div class="fw-semibold">Open 24/7:</div>
                         <div class="ms-sm-auto mt-1 mt-sm-0"><span class="badge bg-danger rounded-pill ms-auto">No</span><span class="badge bg-teal rounded-pill ms-auto">Yes</span></div>
                     </div>
-                    <div class="d-flex justify-content-center bg-transparent py-3">
+
+					<div class="d-flex flex-column align-items-center mb-3">
+    <div class="fw-semibold text-center mb-2">Open Hours:</div>
+    <div class="class=mt-1 mt-sm-0">
+        <div class="d-flex justify-content-between gap-5 mb-4">
+    	<div class="text-start">Monday:</div>
+			<div class="text-end">9 AM - 6 PM</div>
+		</div>
+		<div class="d-flex justify-content-between gap-5 mb-4">
+			<div class="text-start">Tuesday:</div>
+			<div class="text-end">9 AM - 6 PM</div>
+		</div>
+		<div class="d-flex justify-content-between gap-5 mb-4">
+			<div class="text-start">Wednesday:</div>
+			<div class="text-end">9 AM - 6 PM</div>
+		</div>
+		<div class="d-flex justify-content-between gap-5 mb-4">
+			<div class="text-start">Thursday:</div>
+			<div class="text-end">9 AM - 6 PM</div>
+		</div>
+		<div class="d-flex justify-content-between gap-5 mb-4">
+			<div class="text-start">Friday:</div>
+			<div class="text-end">9 AM - 6 PM</div>
+		</div>
+		<div class="d-flex justify-content-between gap-5 mb-4"> <!-- Здесь gap-5 -->
+			<div class="text-start">Sunday:</div>
+			<div class="text-end">Closed</div>
+		</div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Карта будет в правой колонке -->
+        <div class="col-md-6">
+            <div id="map" style="height: 513px;"></div>
+			<div class="d-flex justify-content-center bg-transparent py-3">
   <ul class="list-inline mb-0 d-flex gap-3">
     <li class="list-inline-item">
       <a href="#" class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
@@ -152,14 +185,6 @@
     </li>
   </ul>
 </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Карта будет в правой колонке -->
-        <div class="col-md-6">
-            <div id="map" style="height: 513px;"></div>
         </div>
     </div>
                 <div class="card">
@@ -175,7 +200,6 @@
 								</div>
 							</div>
 </div>
-
 </div>
 
 

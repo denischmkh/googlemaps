@@ -49,11 +49,11 @@ class Place(models.Model):
     website = models.URLField(max_length=1000,null=True, blank=True, verbose_name="Website", validators=[URLValidator()])
     clear_website = models.CharField(max_length=250, null=True, verbose_name="Website Domain")#
 
-    facebook = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Facebook")
-    instagram = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Instagram")
-    linkedin = models.URLField(max_length=10000, null=True, blank=True, verbose_name="LinkedIn")
-    youtube = models.URLField(max_length=10000, null=True, blank=True, verbose_name="YouTube")
-    twitter = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Twitter")
+    facebook = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Facebook")#
+    instagram = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Instagram")#
+    linkedin = models.URLField(max_length=10000, null=True, blank=True, verbose_name="LinkedIn")#
+    youtube = models.URLField(max_length=10000, null=True, blank=True, verbose_name="YouTube")#
+    twitter = models.URLField(max_length=10000, null=True, blank=True, verbose_name="Twitter")#
 
     link = models.CharField(max_length=10000, null=True, verbose_name="Google Maps Link")#
 
