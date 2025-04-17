@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 {% load static %}
 <html lang="en">
 <head>
@@ -17,12 +17,6 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
 
 
 
@@ -31,81 +25,10 @@
 
 </head>
 <body>
-<div class="navbar navbar-dark navbar-expand-xl rounded">
-										<div class="container-fluid">
-											<div class="navbar-brand">
-												<a href="index.html" class="d-inline-flex align-items-center">
-													<img src="../../../assets/images/logo_icon.svg" alt="">
-													<h4 class="d-none d-sm-inline-block text-white lh-1 mb-0 ms-3">Limitless</h4>
-												</a>
-											</div>
-
-											<div class="d-xl-none ms-2">
-												<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-demo1-mobile">
-													<i class="ph-squares-four"></i>
-												</button>
-											</div>
-
-											<div class="navbar-collapse collapse order-2 order-xl-1" id="navbar-demo1-mobile">
-												<ul class="navbar-nav mt-2 mt-xl-0">
-													<li class="nav-item">
-														<a href="#" class="navbar-nav-link rounded">Link</a>
-													</li>
-													<li class="nav-item dropdown">
-														<a href="#" class="navbar-nav-link rounded dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
-														<div class="dropdown-menu">
-															<a href="#" class="dropdown-item">Action</a>
-															<a href="#" class="dropdown-item">Another action</a>
-															<a href="#" class="dropdown-item">Something else here</a>
-															<a href="#" class="dropdown-item">One more line</a>
-														</div>
-													</li>
-												</ul>
-											</div>
-
-											<ul class="navbar-nav flex-row order-1 order-xl-2 ms-auto">
-												<li class="nav-item">
-													<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
-														<i class="ph-bell"></i>
-														<span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
-													</a>
-												</li>
-												<li class="nav-item">
-													<a href="#" class="navbar-nav-link navbar-nav-link-icon rounded ms-xl-2">
-														<i class="ph-chats"></i>
-													</a>
-												</li>
-												<li class="nav-item nav-item-dropdown-xl dropdown ms-xl-2">
-													<a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown">
-														<div class="status-indicator-container">
-															<img src="../../../assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded" alt="">
-															<span class="status-indicator bg-success"></span>
-														</div>
-														<span class="d-none d-xl-inline-block mx-xl-2">Victoria</span>
-													</a>
-
-													<div class="dropdown-menu dropdown-menu-end">
-														<a href="#" class="dropdown-item">Action</a>
-														<a href="#" class="dropdown-item">Another action</a>
-														<a href="#" class="dropdown-item">Something else here</a>
-														<a href="#" class="dropdown-item">One more line</a>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-        <div class="content">
-<style>
-    .icon-big {
-        font-size: 3rem;
-    }
-</style>
+{% block content_area %}
 
 
-
-
-
-
+<div class="content-my">
 <div class="row">
     <div class="col-sm-6 col-xl-3">
         <div class="card card-body bg-success text-white">
@@ -200,31 +123,31 @@
                         <div class="fw-semibold">Open 24/7:</div>
                         <div class="ms-sm-auto mt-1 mt-sm-0"><span class="badge bg-danger rounded-pill ms-auto">No</span><span class="badge bg-teal rounded-pill ms-auto">Yes</span></div>
                     </div>
-                    <div class="d-flex justify-content-center bg-white py-3">
+                    <div class="d-flex justify-content-center bg-transparent py-3">
   <ul class="list-inline mb-0 d-flex gap-3">
     <li class="list-inline-item">
-      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
-        <i class="fab fa-youtube fa-2x text-dark"></i>
+      <a href="#" class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+        <i class="fab fa-youtube fa-lg text-white"></i>
       </a>
     </li>
     <li class="list-inline-item">
-      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
-        <i class="fab fa-twitter fa-2x text-dark"></i>
+      <a href="#" class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+        <i class="fab fa-twitter fa-lg text-white"></i>
       </a>
     </li>
     <li class="list-inline-item">
-      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
-        <i class="fab fa-linkedin fa-2x text-dark"></i>
+      <a href="#" class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+        <i class="fab fa-linkedin fa-lg text-white"></i>
       </a>
     </li>
     <li class="list-inline-item">
-      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
-        <i class="fab fa-instagram fa-2x text-dark"></i>
+      <a href="#" class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+        <i class="fab fa-instagram fa-lg text-white"></i>
       </a>
     </li>
     <li class="list-inline-item">
-      <a href="#" class="btn btn-outline-white btn-icon border-2 rounded-pill p-3">
-        <i class="fab fa-facebook fa-2x text-dark"></i>
+      <a href="#" class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
+        <i class="fab fa-facebook fa-lg text-white"></i>
       </a>
     </li>
   </ul>
@@ -236,7 +159,7 @@
 
         <!-- Карта будет в правой колонке -->
         <div class="col-md-6">
-            <div id="map" style="height: 400px;"></div>
+            <div id="map" style="height: 513px;"></div>
         </div>
     </div>
                 <div class="card">
@@ -277,6 +200,8 @@
   </script>
 
 </biv>
+</biv>
+{% endblock content_area %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'assets/js/app.js' %}"></script>

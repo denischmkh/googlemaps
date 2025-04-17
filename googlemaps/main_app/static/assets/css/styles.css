@@ -2,7 +2,7 @@ body, html {
     overflow: auto;
 }
 
-.content {
+.content-my {
     padding-right: 200px;
     padding-left: 200px;
 }
@@ -12,6 +12,7 @@ body, html {
 }
 
 #map {
-    width: 50%;
-    height: auto;
+    height: 100%;
+    width: 100%;
 }
+
