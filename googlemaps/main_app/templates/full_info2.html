@@ -85,8 +85,8 @@
     <div class="row align-items-start" >
         <div class="col-md-6">
             <div class="card">
-                <div class="card-body border-top-0">
-                    <h5 class="fw-semibold mb-4 text-start">Info</h5>
+                <div class="card-body border-top-0 text-start">
+                    <h5 class="m-0"><i class="ph ph-identification-card me-2"></i> Basic Info</h5>
                     <table class="table">
         <tbody>
           <tr class="odd mb-3">
@@ -190,8 +190,10 @@
         <!-- Карта будет в правой колонке -->
      <div class="col-md-6">
   <div class="card">
-    <div class="card-body border-top-0">
-      <h5 class="fw-semibold mb-4 text-start">Open Hours</h5>
+    <div class="card-body border-top-0 text-start">
+      <h5 class="m-0">
+  <i class="ph ph-clock me-2"></i> Open Hours
+</h5>
       <table class="table">
         <tbody>
   {% for day, hours in open_hours.items %}
@@ -218,9 +220,11 @@
 
         <!-- Первая колонка -->
         <div class="flex-fill">
-            <h3 class="fw-semibold mb-4 text-start">About</h3>
+            <h4 class="m-0 text-start">
+  <i class="ph ph-info me-2"></i> About
+</h4>
 
-            {% for item in parsed_about|slice:":3" %}
+            {% for item in parsed_about|slice:":2" %}
                 <div class="mb-2">
                     <h5 class="text-start">{{ item.title }}:</h5>
                     <ul class="mb-0 ps-3">
@@ -234,7 +238,7 @@
 
         <!-- Вторая колонка -->
         <div class="flex-fill mt-4 ms-lg-4"> <!-- mt-4 to push it below 'About' -->
-            {% for item in parsed_about|slice:"3:6" %}
+            {% for item in parsed_about|slice:"2:4" %}
                 <div class="mb-2">
                     <h5 class="text-start">{{ item.title }}:</h5>
                     <ul class="mb-0 ps-3">
@@ -248,7 +252,7 @@
 
         <!-- Третья колонка -->
         <div class="flex-fill mt-4 ms-lg-4"> <!-- mt-4 to push it below 'About' -->
-            {% for item in parsed_about|slice:"6:" %}
+            {% for item in parsed_about|slice:"4:" %}
                 <div class="mb-2">
                     <h5 class="text-start">{{ item.title }}:</h5>
                     <ul class="mb-0 ps-3">
