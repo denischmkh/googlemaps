@@ -93,11 +93,11 @@ def place_full_info(request, name_slug):
                         'title': key.strip(),
                         'values': [value_str.strip()]
                     })
-    except JSONDecodeError:
+    except (JSONDecodeError, AttributeError):
         parsed_items = []
     try:
         open_hours = json.loads(place_obj.open_hours.replace("'", '"'))
-    except JSONDecodeError:
+    except (JSONDecodeError, AttributeError):
         open_hours = {}
 
     context = {"place_obj": place_obj,
