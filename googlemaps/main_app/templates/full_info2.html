@@ -31,22 +31,22 @@
 <div class="content-my">
 <div class="row">
     <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-success text-white">
-            <div class="d-flex align-items-center">
-                <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.name|default:"Unknown"}}</h4>
-                    <span class="text-white-50">Name</span>
-                </div>
-                <i class="bi bi-shop icon-big ms-3"></i>
-            </div>
-        </div>
+  <div class="card card-body bg-success text-white" style="min-height: 150px;">
+    <div class="d-flex align-items-center h-100">
+      <div class="flex-fill">
+        <h4 class="mb-0">{{place_obj.name}}</h4>
+        <span class="text-white-50">Name</span>
+      </div>
+      <i class="bi bi-shop icon-big ms-3"></i>
     </div>
+  </div>
+</div>
 
     <div class="col-sm-6 col-xl-3">
         <div class="card card-body bg-warning text-dark">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.rating|default:"Unknown"}}</h4>
+                    <h4 class="mb-0">{{place_obj.rating}}</h4>
                     <span class="text-muted">Rating</span>
                 </div>
                 <i class="bi bi-star-fill icon-big ms-3"></i>
@@ -58,7 +58,7 @@
         <div class="card card-body bg-primary text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.city|default:"Unknown"}}</h4>
+                    <h4 class="mb-0">{{place_obj.city}}</h4>
                     <span class="text-white-50">Located</span>
                 </div>
                 <i class="bi bi-geo-alt-fill icon-big ms-3"></i>
@@ -70,8 +70,8 @@
         <div class="card card-body bg-danger text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.num_reviews|default:"Unknown"}}</h4>
-                    <span class="text-white-50">Total reviews</span>
+                    <h4 class="mb-0">{{place_obj.num_reviews}}</h4>
+                    <span class="text-white-50">Reviews</span>
                 </div>
                 <i class="bi bi-people-fill icon-big ms-3"></i>
             </div>
@@ -212,25 +212,54 @@
 
     </div>
                 <div class="card">
+    <div class="card-body d-flex flex-column flex-lg-row">
 
+        <!-- Первая колонка -->
+        <div class="flex-fill">
+            <h3 class="fw-semibold mb-4 text-start">About</h3>
 
-								<div class="card-body d-flex flex-column flex-lg-row">
+            {% for item in parsed_about|slice:":3" %}
+                <div class="mb-2">
+                    <h5 class="text-start">{{ item.title }}:</h5>
+                    <ul class="mb-0 ps-3">
+                        {% for val in item.values %}
+                            <li class="text-start">{{ val }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
 
-									<div class="flex-fill">
-										<h3 class="fw-semibold mb-4 text-start">About</h3>
-                                           {% for item in parsed_about %}
-                                            <div class="mb-2">
-                                              <h5 class="text-start">{{ item.title }}:</h5>
-                                              <ul class="mb-0 ps-3">
-                                                {% for val in item.values %}
-                                                  <li class="text-start"> {{ val }}</li>
-                                                {% endfor %}
-                                              </ul>
-                                            </div>
-                                          {% endfor %}
-									</div>
-								</div>
-							</div>
+        <!-- Вторая колонка -->
+        <div class="flex-fill mt-4 ms-lg-4"> <!-- mt-4 to push it below 'About' -->
+            {% for item in parsed_about|slice:"3:6" %}
+                <div class="mb-2">
+                    <h5 class="text-start">{{ item.title }}:</h5>
+                    <ul class="mb-0 ps-3">
+                        {% for val in item.values %}
+                            <li class="text-start">{{ val }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Третья колонка -->
+        <div class="flex-fill mt-4 ms-lg-4"> <!-- mt-4 to push it below 'About' -->
+            {% for item in parsed_about|slice:"6:" %}
+                <div class="mb-2">
+                    <h5 class="text-start">{{ item.title }}:</h5>
+                    <ul class="mb-0 ps-3">
+                        {% for val in item.values %}
+                            <li class="text-start">{{ val }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
                 <div id="map" style="height: 513px;"></div>
 </div>
 </div>
