@@ -34,11 +34,11 @@
   <div class="col-12">
     <div class="card card-body bg-success text-white">
       <div class="d-flex align-items-center h-100">
-        <div class="flex-fill">
+        <i class="bi bi-shop fs-1 me-3"></i>
+        <div class="flex-fill text-start">
           <h4 class="mb-0">{{ place_obj.name|default:"Unknown" }}</h4>
           <span class="text-white-50">Name</span>
         </div>
-        <i class="bi bi-shop fs-1 ms-3"></i>
       </div>
     </div>
   </div>
@@ -47,11 +47,11 @@
   <div class="col-md-4">
     <div class="card card-body bg-warning text-dark">
       <div class="d-flex align-items-center">
-        <div class="flex-fill">
+        <i class="bi bi-star-fill fs-1 me-3"></i>
+        <div class="flex-fill text-start">
           <h4 class="mb-0">{{ place_obj.rating|default:"Unknown" }}</h4>
           <span class="text-muted">Rating</span>
         </div>
-        <i class="bi bi-star-fill fs-1 ms-3"></i>
       </div>
     </div>
   </div>
@@ -59,11 +59,11 @@
   <div class="col-md-4">
     <div class="card card-body bg-primary text-white">
       <div class="d-flex align-items-center">
-        <div class="flex-fill">
-          <h4 class="mb-0">{{ place_obj.city|default:"Unknown" }}</h4>
-          <span class="text-white-50">Located</span>
+        <i class="bi bi-geo-alt-fill fs-1 me-3"></i>
+        <div class="flex-fill text-start">
+          <h4 class="mb-0">{{ place_obj.address|default:"Unknown" }}</h4>
+          <h6 class="mb-0">{{ place_obj.city.country|default:"Unknown" }}, {{ place_obj.city.state|default:"Unknown" }}, {{ place_obj.city|default:"Unknown" }}, {{ place_obj.postcode|default:"Unknown" }}</h6>
         </div>
-        <i class="bi bi-geo-alt-fill fs-1 ms-3"></i>
       </div>
     </div>
   </div>
@@ -71,11 +71,11 @@
   <div class="col-md-4">
     <div class="card card-body bg-danger text-white">
       <div class="d-flex align-items-center">
-        <div class="flex-fill">
+        <i class="bi bi-people-fill fs-1 me-3"></i>
+        <div class="flex-fill text-start">
           <h4 class="mb-0">{{ place_obj.num_reviews|default:"Unknown" }}</h4>
           <span class="text-white-50">Reviews</span>
         </div>
-        <i class="bi bi-people-fill fs-1 ms-3"></i>
       </div>
     </div>
   </div>
@@ -86,7 +86,9 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body border-top-0 text-start">
-                    <h5 class="m-0"><i class="ph ph-identification-card me-2"></i> Basic Info</h5>
+                    <div class="card-header bg-primary text-white py-3">
+                        <h5 class="m-0"><i class="ph ph-identification-card me-2"></i> Basic Info</h5>
+                    </div>
                     <table class="table">
         <tbody>
           <tr class="odd mb-3">
@@ -191,9 +193,12 @@
      <div class="col-md-6">
   <div class="card">
     <div class="card-body border-top-0 text-start">
-      <h5 class="m-0">
+        <div class="card-header bg-primary text-white py-3">
+                        <h5 class="m-0">
   <i class="ph ph-clock me-2"></i> Open Hours
 </h5>
+                    </div>
+
       <table class="table">
         <tbody>
   {% for day, hours in open_hours.items %}
@@ -216,55 +221,59 @@
 
     </div>
                 <div class="card">
-    <div class="card-body d-flex flex-column flex-lg-row">
+  <!-- Заголовок на всю ширину -->
+  <div class="card-header bg-primary text-white py-3">
+    <h4 class="m-0 text-start">
+      <i class="ph ph-info me-2"></i> About
+    </h4>
+  </div>
 
-        <!-- Первая колонка -->
-        <div class="flex-fill">
-            <h4 class="m-0 text-start">
-  <i class="ph ph-info me-2"></i> About
-</h4>
+  <!-- Контент с тремя колонками -->
+  <div class="card-body d-flex flex-column flex-lg-row">
 
-            {% for item in parsed_about|slice:":2" %}
-                <div class="mb-2">
-                    <h5 class="text-start">{{ item.title }}:</h5>
-                    <ul class="mb-0 ps-3">
-                        {% for val in item.values %}
-                            <li class="text-start">{{ val }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+    <!-- Первая колонка -->
+    <div class="flex-fill">
+      {% for item in parsed_about|slice:":2" %}
+        <div class="mb-2">
+          <h5 class="text-start">{{ item.title }}:</h5>
+          <ul class="mb-0 ps-3">
+            {% for val in item.values %}
+              <li class="text-start">{{ val }}</li>
             {% endfor %}
+          </ul>
         </div>
-
-        <!-- Вторая колонка -->
-        <div class="flex-fill mt-4 ms-lg-4"> <!-- mt-4 to push it below 'About' -->
-            {% for item in parsed_about|slice:"2:4" %}
-                <div class="mb-2">
-                    <h5 class="text-start">{{ item.title }}:</h5>
-                    <ul class="mb-0 ps-3">
-                        {% for val in item.values %}
-                            <li class="text-start">{{ val }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
-        </div>
-
-        <!-- Третья колонка -->
-        <div class="flex-fill mt-4 ms-lg-4"> <!-- mt-4 to push it below 'About' -->
-            {% for item in parsed_about|slice:"4:" %}
-                <div class="mb-2">
-                    <h5 class="text-start">{{ item.title }}:</h5>
-                    <ul class="mb-0 ps-3">
-                        {% for val in item.values %}
-                            <li class="text-start">{{ val }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
-        </div>
-
+      {% endfor %}
     </div>
+
+    <!-- Вторая колонка -->
+    <div class="flex-fill mt-4 mt-lg-0 ms-lg-4">
+      {% for item in parsed_about|slice:"2:4" %}
+        <div class="mb-2">
+          <h5 class="text-start">{{ item.title }}:</h5>
+          <ul class="mb-0 ps-3">
+            {% for val in item.values %}
+              <li class="text-start">{{ val }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Третья колонка -->
+    <div class="flex-fill mt-4 mt-lg-0 ms-lg-4">
+      {% for item in parsed_about|slice:"4:" %}
+        <div class="mb-2">
+          <h5 class="text-start">{{ item.title }}:</h5>
+          <ul class="mb-0 ps-3">
+            {% for val in item.values %}
+              <li class="text-start">{{ val }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
 </div>
                 <div id="map" style="height: 513px;"></div>
 </div>
