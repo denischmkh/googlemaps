@@ -29,54 +29,56 @@
 
 
 <div class="content-my">
-<div class="row">
-    <div class="col-sm-6 col-xl-3">
-  <div class="card card-body bg-success text-white" style="min-height: 150px;">
-    <div class="d-flex align-items-center h-100">
-      <div class="flex-fill">
-        <h4 class="mb-0">{{place_obj.name|default:"Unknown" }}</h4>
-        <span class="text-white-50">Name</span>
+<div class="row g-3">
+  <!-- Название на всю ширину -->
+  <div class="col-12">
+    <div class="card card-body bg-success text-white" style="border-radius: 10px;">
+      <div class="d-flex align-items-center h-100">
+        <div class="flex-fill">
+          <h4 class="mb-0">{{ place_obj.name|default:"Unknown" }}</h4>
+          <span class="text-white-50">Name</span>
+        </div>
+        <i class="bi bi-shop fs-1 ms-3"></i>
       </div>
-      <i class="bi bi-shop fs-1 ms-3"></i>
     </div>
   </div>
-</div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-warning text-dark">
-            <div class="d-flex align-items-center">
-                <div class="flex-fill">
-                    <h4 class="mb-0">{{ place_obj.rating|default:"Unknown" }}</h4>
-                    <span class="text-muted">Rating</span>
-                </div>
-                <i class="bi bi-star-fill fs-1 ms-3"></i>
-            </div>
+  <!-- Остальные блоки -->
+  <div class="col-md-4">
+    <div class="card card-body bg-warning text-dark" style="border-radius: 10px;">
+      <div class="d-flex align-items-center">
+        <div class="flex-fill">
+          <h4 class="mb-0">{{ place_obj.rating|default:"Unknown" }}</h4>
+          <span class="text-muted">Rating</span>
         </div>
+        <i class="bi bi-star-fill fs-1 ms-3"></i>
+      </div>
     </div>
+  </div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-primary text-white">
-            <div class="d-flex align-items-center">
-                <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.city|default:"Unknown" }}</h4>
-                    <span class="text-white-50">Located</span>
-                </div>
-                <i class="bi bi-geo-alt-fill fs-1 ms-3"></i>
-            </div>
+  <div class="col-md-4">
+    <div class="card card-body bg-primary text-white" style="border-radius: 10px;">
+      <div class="d-flex align-items-center">
+        <div class="flex-fill">
+          <h4 class="mb-0">{{ place_obj.city|default:"Unknown" }}</h4>
+          <span class="text-white-50">Located</span>
         </div>
+        <i class="bi bi-geo-alt-fill fs-1 ms-3"></i>
+      </div>
     </div>
+  </div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="card card-body bg-danger text-white">
-            <div class="d-flex align-items-center">
-                <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.num_reviews|default:"Unknown" }}</h4>
-                    <span class="text-white-50">Reviews</span>
-                </div>
-                <i class="bi bi-people-fill fs-1 ms-3"></i>
-            </div>
+  <div class="col-md-4">
+    <div class="card card-body bg-danger text-white" style="border-radius: 10px;">
+      <div class="d-flex align-items-center">
+        <div class="flex-fill">
+          <h4 class="mb-0">{{ place_obj.num_reviews|default:"Unknown" }}</h4>
+          <span class="text-white-50">Reviews</span>
         </div>
+        <i class="bi bi-people-fill fs-1 ms-3"></i>
+      </div>
     </div>
+  </div>
 </div>
 
             <div class="container min-vh-100">
