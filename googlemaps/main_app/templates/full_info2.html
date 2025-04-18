@@ -34,7 +34,7 @@
   <div class="card card-body bg-success text-white" style="min-height: 150px;">
     <div class="d-flex align-items-center h-100">
       <div class="flex-fill">
-        <h4 class="mb-0">{{place_obj.name}}</h4>
+        <h4 class="mb-0">{{place_obj.name|default:"Unknown" }}</h4>
         <span class="text-white-50">Name</span>
       </div>
       <i class="bi bi-shop icon-big ms-3"></i>
@@ -46,7 +46,7 @@
         <div class="card card-body bg-warning text-dark">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.rating}}</h4>
+                    <h4 class="mb-0">{{ place_obj.rating|default:"Unknown" }}</h4>
                     <span class="text-muted">Rating</span>
                 </div>
                 <i class="bi bi-star-fill icon-big ms-3"></i>
@@ -58,7 +58,7 @@
         <div class="card card-body bg-primary text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.city}}</h4>
+                    <h4 class="mb-0">{{place_obj.city|default:"Unknown" }}</h4>
                     <span class="text-white-50">Located</span>
                 </div>
                 <i class="bi bi-geo-alt-fill icon-big ms-3"></i>
@@ -70,7 +70,7 @@
         <div class="card card-body bg-danger text-white">
             <div class="d-flex align-items-center">
                 <div class="flex-fill">
-                    <h4 class="mb-0">{{place_obj.num_reviews}}</h4>
+                    <h4 class="mb-0">{{place_obj.num_reviews|default:"Unknown" }}</h4>
                     <span class="text-white-50">Reviews</span>
                 </div>
                 <i class="bi bi-people-fill icon-big ms-3"></i>
