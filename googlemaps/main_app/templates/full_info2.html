@@ -37,44 +37,7 @@
         <i class="bi bi-shop fs-1 me-3"></i>
         <div class="flex-fill text-start">
           <h4 class="mb-0">{{ place_obj.name|default:"Unknown" }}</h4>
-          <span class="text-white-50">Name</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Остальные блоки -->
-  <div class="col-md-4">
-    <div class="card card-body bg-warning text-dark">
-      <div class="d-flex align-items-center">
-        <i class="bi bi-star-fill fs-1 me-3"></i>
-        <div class="flex-fill text-start">
-          <h4 class="mb-0">{{ place_obj.rating|default:"Unknown" }}</h4>
-          <span class="text-muted">Rating</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="card card-body bg-primary text-white">
-      <div class="d-flex align-items-center">
-        <i class="bi bi-geo-alt-fill fs-1 me-3"></i>
-        <div class="flex-fill text-start">
-          <h4 class="mb-0">{{ place_obj.address|default:"Unknown" }}</h4>
-          <h6 class="mb-0">{{ place_obj.city.country|default:"Unknown" }}, {{ place_obj.city.state|default:"Unknown" }}, {{ place_obj.city|default:"Unknown" }}, {{ place_obj.postcode|default:"Unknown" }}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="card card-body bg-danger text-white">
-      <div class="d-flex align-items-center">
-        <i class="bi bi-people-fill fs-1 me-3"></i>
-        <div class="flex-fill text-start">
-          <h4 class="mb-0">{{ place_obj.num_reviews|default:"Unknown" }}</h4>
-          <span class="text-white-50">Reviews</span>
+          <span class="text-white-50">{{ place_obj.city.country|default:"Unknown" }}, {{ place_obj.city.state|default:"Unknown" }}, {{ place_obj.city|default:"Unknown" }}, {{ place_obj.postcode|default:"Unknown" }}, {{ place_obj.address|default:"Unknown" }}</span>
         </div>
       </div>
     </div>
@@ -85,7 +48,7 @@
     <div class="row align-items-start" >
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-primary text-white py-3">
+                <div class="card-header bg-primary text-white py-3" style="border-radius: 0;">
                         <h5 class="m-0"><i class="ph ph-identification-card me-2"></i> Basic Info</h5>
                     </div>
                 <div class="card-body border-top-0 text-start">
@@ -95,6 +58,10 @@
           <tr class="odd mb-3">
             <td class="fw-semibold text-start" style="width: 400px;">Category:</td>
             <td class="text-start">{{ place_obj.category|default:"-" }}</td>
+          </tr>
+          <tr class="odd mb-3">
+            <td class="fw-semibold text-start" style="width: 400px;">Rating:</td>
+            <td class="text-start">{{ place_obj.rating|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
             <td class="fw-semibold text-start" style="width: 400px;">Address:</td>
@@ -125,9 +92,15 @@
             </td>
           </tr>
           <tr class="odd mb-3">
-            <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
-            <td class="text-start">{{ place_obj.website|default:"-" }}</td>
-          </tr>
+  <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
+  <td class="text-start">
+    {% if place_obj.website %}
+      <a href="{{ place_obj.website }}" target="_blank" rel="noopener noreferrer">Link</a>
+    {% else %}
+      -
+    {% endif %}
+  </td>
+</tr>
         </tbody>
       </table>
                     <div class="d-flex justify-content-center bg-transparent py-3">
@@ -193,7 +166,7 @@
         <!-- Карта будет в правой колонке -->
      <div class="col-md-6">
   <div class="card">
-      <div class="card-header bg-primary text-white py-3">
+      <div class="card-header bg-primary text-white py-3" style="border-radius: 0;">
                         <h5 class="m-0">
   <i class="ph ph-clock me-2"></i> Open Hours
 </h5>
@@ -224,7 +197,7 @@
     </div>
                 <div class="card">
   <!-- Заголовок на всю ширину -->
-  <div class="card-header bg-primary text-white py-3">
+  <div class="card-header bg-primary text-white py-3" style="border-radius: 0;">
     <h4 class="m-0 text-start">
       <i class="ph ph-info me-2"></i> About
     </h4>
