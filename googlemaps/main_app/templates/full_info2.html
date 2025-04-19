@@ -61,36 +61,92 @@
           </tr>
           <tr class="odd mb-3">
             <td class="fw-semibold text-start" style="width: 400px;">Rating:</td>
-            <td class="text-start">{{ place_obj.rating|default:"-" }}</td>
-          </tr>
-          <tr class="odd mb-3">
-            <td class="fw-semibold text-start" style="width: 400px;">Address:</td>
-            <td class="text-start">{{ place_obj.address|default:"-" }}</td>
+            <td class="text-start">{{ place_obj.rating|default:"-" }}{% if place_obj.num_reviews %} ({{place_obj.num_reviews}} reviews) {% endif %}</td>
           </tr>
           <tr class="odd mb-3">
             <td class="fw-semibold text-start" style="width: 400px;">Place Type:</td>
             <td class="text-start">{{ place_obj.place_type|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="fw-semibold text-start" style="width: 400px;">Phone:</td>
-            <td class="text-start">{{ place_obj.phone|default:"-" }}</td>
+              <td class="fw-semibold text-start" style="width: 400px;">Phone:</td>
+              <td class="text-start">
+                {% if place_obj.phone %}
+                  <span class="badge bg-success rounded-pill">Yes</span>
+                {% elif place_obj.phone == "" or place_obj.phone == None %}
+                  <span class="badge bg-danger rounded-pill">No</span>
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+            </tr>
+            <tr class="odd mb-3">
+              <td class="fw-semibold text-start" style="width: 400px;">Email:</td>
+              <td class="text-start">
+                {% if place_obj.email %}
+                  <span class="badge bg-success rounded-pill">Yes</span>
+                {% elif place_obj.email == "" or place_obj.email == None %}
+                  <span class="badge bg-danger rounded-pill">No</span>
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+            </tr>
+          <tr class="odd mb-3">
+            <td class="fw-semibold text-start" style="width: 400px;">lat:</td>
+            <td class="text-start">{{ place_obj.lat }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="fw-semibold text-start" style="width: 400px;">Email:</td>
-            <td class="text-start">{{ place_obj.email|default:"-" }}</td>
+            <td class="fw-semibold text-start" style="width: 400px;">lng:</td>
+            <td class="text-start">{{ place_obj.lng }}</td>
           </tr>
           <tr class="odd mb-3">
-            <td class="fw-semibold text-start" style="width: 400px;">Open 24/7:</td>
-            <td class="text-start">
-              {% if place_obj.open_24_7 %}
-                <span class="badge bg-success rounded-pill">Yes</span>
-              {% elif place_obj.open_24_7 == False %}
-                <span class="badge bg-danger rounded-pill">No</span>
-              {% else %}
-                -
-              {% endif %}
-            </td>
-          </tr>
+  <td class="fw-semibold text-start" style="width: 400px;">Social Networks:</td>
+  <td class="text-start">
+    <ul class="list-inline mb-0 d-flex align-items-center gap-2">
+      {% if place_obj.youtube %}
+      <li class="list-inline-item">
+        <a href="" target="_blank">
+          <i class="fab fa-youtube fa-lg" style="color: #FF0000;"></i>
+        </a>
+      </li>
+      {% endif %}
+
+      {% if place_obj.twitter %}
+      <li class="list-inline-item">
+        <a href="" target="_blank">
+          <i class="fab fa-twitter fa-lg" style="color: #1DA1F2;"></i>
+        </a>
+      </li>
+      {% endif %}
+
+      {% if place_obj.linkedin %}
+      <li class="list-inline-item">
+        <a href="" target="_blank">
+          <i class="fab fa-linkedin fa-lg" style="color: #0077B5;"></i>
+        </a>
+      </li>
+      {% endif %}
+
+      {% if place_obj.instagram %}
+      <li class="list-inline-item">
+        <a href="" target="_blank">
+          <i class="fab fa-instagram fa-lg" style="color: #C13584;"></i>
+        </a>
+      </li>
+      {% endif %}
+
+      {% if place_obj.facebook %}
+      <li class="list-inline-item">
+        <a href="" target="_blank">
+          <i class="fab fa-facebook fa-lg" style="color: #1877F2;"></i>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </td>
+</tr>
+
+
           <tr class="odd mb-3">
   <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
   <td class="text-start">
@@ -103,59 +159,6 @@
 </tr>
         </tbody>
       </table>
-                    <div class="d-flex justify-content-center bg-transparent py-3">
-  <ul class="list-inline mb-0 d-flex gap-3">
-    {% if place_obj.youtube %}
-    <li class="list-inline-item">
-        <a href="{{ place_obj.youtube }}" target="_blank">
-            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-                <i class="fab fa-youtube fa-lg" style="color: #FF0000;"></i>
-            </div>
-        </a>
-    </li>
-    {% endif %}
-
-    {% if place_obj.twitter %}
-    <li class="list-inline-item">
-        <a href="{{ place_obj.twitter }}" target="_blank">
-            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-                <i class="fab fa-twitter fa-lg" style="color: #1DA1F2;"></i>
-            </div>
-        </a>
-    </li>
-    {% endif %}
-
-    {% if place_obj.linkedin %}
-    <li class="list-inline-item">
-        <a href="{{ place_obj.linkedin }}" target="_blank">
-            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-                <i class="fab fa-linkedin fa-lg" style="color: #0077B5;"></i>
-            </div>
-        </a>
-    </li>
-    {% endif %}
-
-    {% if place_obj.instagram %}
-    <li class="list-inline-item">
-        <a href="{{ place_obj.instagram }}" target="_blank">
-            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-                <i class="fab fa-instagram fa-lg" style="color: #C13584;"></i>
-            </div>
-        </a>
-    </li>
-    {% endif %}
-
-    {% if place_obj.facebook %}
-    <li class="list-inline-item">
-        <a href="{{ place_obj.facebook }}" target="_blank">
-            <div class="d-flex align-items-center justify-content-center rounded-circle border border-light" style="width: 60px; height: 60px;">
-                <i class="fab fa-facebook fa-lg" style="color: #1877F2;"></i>
-            </div>
-        </a>
-    </li>
-    {% endif %}
-</ul>
-</div>
 
 
                 </div>
@@ -188,6 +191,18 @@
     </td>
   </tr>
 {% endfor %}
+        <tr class="odd mb-3">
+            <td class="fw-semibold text-start" style="width: 400px;">Open 24/7:</td>
+            <td class="text-start">
+              {% if place_obj.open_24_7 %}
+                <span class="badge bg-success rounded-pill">Yes</span>
+              {% elif place_obj.open_24_7 == False %}
+                <span class="badge bg-danger rounded-pill">No</span>
+              {% else %}
+                -
+              {% endif %}
+            </td>
+          </tr>
 </tbody>
       </table>
     </div>
