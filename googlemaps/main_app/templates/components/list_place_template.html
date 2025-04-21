@@ -95,6 +95,23 @@
         </tr>
     {% endfor %}
 </table>
+<style>
+    /* Общий стиль для всех ячеек таблицы */
+    .table th, .table td {
+        border-right: 1px solid #dee2e6;
+    }
+
+    /* Удалим правую границу у последнего столбца */
+    .table th:last-child,
+    .table td:last-child {
+        border-right: none;
+    }
+
+    /* Границы между строками (если нужно) */
+    .table tr {
+        border-bottom: 1px solid #dee2e6;
+    }
+</style>
 
 </tbody>
 
