@@ -1,104 +1,103 @@
 <table class="table tasks-list" style="table-layout: fixed;">
     <thead>
+    <tr>
+        <h1>{{category_filter}}</h1>
+        <th style="width: 160px;" class="text-start">Name</th>
+        <th style="width: 90px;" class="text-start">Rating</th> <!-- Сделано уже -->
+        <th style="width: 90px;" class="text-start">State</th>
+        <th style="width: 120px;" class="text-start">City</th>
+        <th style="width: 120px;" class="text-start">Postcode</th>
+        <th style="width: 140px;" class="text-start">Place Type</th>
+        <th style="width: 95px;" class="text-start">Phone</th>
+        <th style="width: 90px;" class="text-start">Email</th>
+        <th style="width: 110px;" class="text-start">Website</th>
+        <th style="width: 160px;" class="text-start">Socials</th>
+    </tr>
+</thead>
+<tbody>
+    {% for item in places %}
         <tr>
-            <h1>{{category_filter}}</h1>
-            <th style="width: 160px;">Name</th>
-            <th style="width: 100px;">Rating</th>
-            <th style="width: 120px;">State</th>
-            <th style="width: 120px;">City</th>
-            <th style="width: 120px;">Postcode</th>
-            <th style="width: 140px;">Place Type</th>
-            <th style="width: 95px;">Phone</th>
-            <th style="width: 90px;">Email</th>
-            <th style="width: 110px;">Website</th>
-            <th style="width: 160px;">Socials</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in places %}
-            <tr>
-                <td>
-                    <a href="{% url 'place_full_info' item.slug %}" target="_blank">
-                        {{ item.name|default:"-" }}
+            <td class="text-start">
+                <a href="{% url 'place_full_info' item.slug %}" target="_blank">
+                    {{ item.name|default:"-" }}
+                </a>
+            </td>
+            <td class="text-start">{{ item.rating|default:"-" }}</td> <!-- Выравнивание по левому краю -->
+            <td class="text-start">{{ item.city.state }}</td>
+            <td class="text-start">{{ item.city }}</td>
+            <td class="text-start">{{ item.postcode|default:"-" }}</td>
+            <td class="text-start">{{ item.place_type|default:"-" }}</td>
+            <td class="text-center">
+                {% if item.phone %}
+                    <div class="text-success bg-success bg-opacity-25">
+                        Yes
+                    </div>
+                {% else %}
+                    <div class="text-danger bg-danger bg-opacity-25">
+                        No
+                    </div>
+                {% endif %}
+            </td>
+            <td class="text-center">
+                {% if item.email %}
+                    <div class="text-success bg-success bg-opacity-25">
+                        Yes
+                    </div>
+                {% else %}
+                    <div class="text-danger bg-danger bg-opacity-25">
+                        No
+                    </div>
+                {% endif %}
+            </td>
+            <td class="text-start px-2" style="width: 50px;">
+                {% if item.website %}
+                    <a href="{{ item.website }}">
+                        <i class="ph ph-link"></i>
                     </a>
-                </td>
-                <td class="text-break">{{ item.rating|default:"-" }}</td>
-                <td class="text-break">{{ item.city.state }}</td>
-                <td class="text-break">{{ item.city }}</td>
-                <td class="text-break">{{ item.postcode|default:"-" }}</td>
-                <td class="text-wrap">{{ item.place_type|default:"-" }}</td>
-                <td class="text-center">
-                    {% if item.phone %}
-                        <div class="text-success bg-success bg-opacity-25">
-                            Yes
-                        </div>
-                    {% else %}
-                        <div class="text-danger bg-danger bg-opacity-25">
-                            No
-                        </div>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td class="text-start">
+                <ul class="list-inline mb-0 d-flex align-items-center gap-2">
+                    {% if item.youtube %}
+                    <li class="list-inline-item">
+                        <i class="fab fa-youtube fa-lg" style="color: #FF0000;"></i>
+                    </li>
                     {% endif %}
-                </td>
-                <td class="text-center">
-                    {% if item.email %}
-                        <div class="text-success bg-success bg-opacity-25">
-                            Yes
-                        </div>
-                    {% else %}
-                        <div class="text-danger bg-danger bg-opacity-25">
-                            No
-                        </div>
+
+                    {% if item.twitter %}
+                    <li class="list-inline-item">
+                        <i class="fab fa-twitter fa-lg" style="color: #1DA1F2;"></i>
+                    </li>
                     {% endif %}
-                </td>
-                <td  class="text-center px-2" style="width: 50px;">
-                    {% if item.website %}
-                        <a href="{{ item.website }}">
-                            <i class="ph ph-link"></i>
-                        </a>
-                    {% else %}
-                        -
+
+                    {% if item.linkedin %}
+                    <li class="list-inline-item">
+                        <i class="fab fa-linkedin fa-lg" style="color: #0077B5;"></i>
+                    </li>
                     {% endif %}
-                </td>
-                <td class="text-start">
-                    <ul class="list-inline mb-0 d-flex align-items-center gap-1 flex-wrap">
-                        {% if item.youtube %}
-                        <li class="list-inline-item">
-                                <i class="fab fa-youtube fa-sm" style="color: #FF0000;"></i>
-                        </li>
-                        {% endif %}
 
-                        {% if item.twitter %}
-                        <li class="list-inline-item">
-                                <i class="fab fa-twitter fa-sm" style="color: #1DA1F2;"></i>
-                        </li>
-                        {% endif %}
+                    {% if item.instagram %}
+                    <li class="list-inline-item">
+                        <i class="fab fa-instagram fa-lg" style="color: #C13584;"></i>
+                    </li>
+                    {% endif %}
 
-                        {% if item.linkedin %}
-                        <li class="list-inline-item">
-                                <i class="fab fa-linkedin fa-sm" style="color: #0077B5;"></i>
-                        </li>
-                        {% endif %}
-
-                        {% if item.instagram %}
-                        <li class="list-inline-item">
-                                <i class="fab fa-instagram fa-sm" style="color: #C13584;"></i>
-                        </li>
-                        {% endif %}
-
-                        {% if item.facebook %}
-                        <li class="list-inline-item">
-                                <i class="fab fa-facebook fa-sm" style="color: #1877F2;"></i>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </td>
-
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="12" class="text-center">No places available</td>
-            </tr>
-        {% endfor %}
-    </tbody>
+                    {% if item.facebook %}
+                    <li class="list-inline-item">
+                        <i class="fab fa-facebook fa-lg" style="color: #1877F2;"></i>
+                    </li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="12" class="text-center">No places available</td>
+        </tr>
+    {% endfor %}
+</tbody>
 </table>
 
 
