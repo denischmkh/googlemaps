@@ -1,15 +1,16 @@
-<div class="table-responsive">
-<table class="table tasks-list" style="table-layout: fixed;">
-    <thead>
+<div class="position-relative" style="height: 70vh;">
+    <div class="table-responsive position-absolute top-0 start-0 end-0" style="height: 100%; overflow-x: auto; overflow-y: auto;">
+        <table class="table tasks-list mb-0" style="table-layout: fixed; min-width: 1000px;">
+     <thead class="bg-light" style="position: sticky; top: 0; z-index: 2;">
     <tr>
         <h1>{{category_filter}}</h1>
         <th style="width: 160px;" class="text-start text-nowrap">Name</th>
-        <th style="width: 90px;" class="text-start text-nowrap">Rating</th> <!-- Сделано уже -->
+        <th style="width: 50px;" class="text-start text-nowrap">Rating</th> <!-- Сделано уже -->
         <th style="width: 100px;" class="text-start text-nowrap">City</th>
         <th style="width: 110px;" class="text-start text-nowrap">Place Type</th>
         <th style="width: 95px;" class="text-start text-nowrap">Phone</th>
         <th style="width: 90px;" class="text-start text-nowrap">Email</th>
-        <th style="width: 70px;" class="text-start text-nowrap">Website</th>
+        <th style="width: 60px;" class="text-start text-nowrap">Website</th>
         <th style="width: 160px;" class="text-start text-nowrap">Socials</th>
     </tr>
 </thead>
@@ -21,7 +22,7 @@
                     {{ item.name|default:"-" }}
                 </a>
             </td>
-            <td class="text-start">{{ item.rating|default:"-" }}</td> <!-- Выравнивание по левому краю -->
+            <td class="text-start text-nowrap">{{ item.rating|default:"-" }}</td>
             <td class="text-start">{{ item.city }}</td>
             <td class="text-start">{{ item.place_type|default:"-" }}</td>
             <td class="text-center">
@@ -94,8 +95,11 @@
             <td colspan="12" class="text-center">No places available</td>
         </tr>
     {% endfor %}
-</tbody>
 </table>
+    </div>
+</div>
+</tbody>
+
 
 
 
@@ -107,7 +111,7 @@
             <li class="page-item">
                 <a class="page-link" href="{% clean_url request %}&page={{ places.previous_page_number }}">Previous</a>
             </li>
-            {% if places.number > 4 %} 
+            {% if places.number > 4 %}
                 <li class="page-item">
                     <a class="page-link" href="{% clean_url request %}&page=1">1</a>
                 </li>
@@ -142,7 +146,7 @@
         {% endif %}
     </ul>
 </nav>
-</div>
+
 <style>
     th {
         white-space: nowrap;
