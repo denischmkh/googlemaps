@@ -1,11 +1,9 @@
 <table class="table tasks-list" style="table-layout: fixed;">
     <thead>
         <tr>
-            <th style="width: 120px;">Category</th>
+            <h1>{{category_filter}}</h1>
             <th style="width: 160px;">Name</th>
             <th style="width: 100px;">Rating</th>
-            <th style="width: 120px;">Reviews</th>
-            <th style="width: 120px;">Country</th>
             <th style="width: 120px;">State</th>
             <th style="width: 120px;">City</th>
             <th style="width: 120px;">Postcode</th>
@@ -19,15 +17,12 @@
     <tbody>
         {% for item in places %}
             <tr>
-                <td>{{ item.category }}</td>
                 <td>
                     <a href="{% url 'place_full_info' item.slug %}" target="_blank">
                         {{ item.name|default:"-" }}
                     </a>
                 </td>
                 <td class="text-break">{{ item.rating|default:"-" }}</td>
-                <td class="text-break">{{ item.num_reviews|default:"-" }}</td>
-                <td class="text-break">{{ item.city.country }}</td>
                 <td class="text-break">{{ item.city.state }}</td>
                 <td class="text-break">{{ item.city }}</td>
                 <td class="text-break">{{ item.postcode|default:"-" }}</td>
@@ -63,37 +58,40 @@
                         -
                     {% endif %}
                 </td>
-                <td class="text-center" style="gap: 5px; flex-wrap: wrap;">
-                    {% if item.facebook %}
-                        <a href="{{item.facebook}}" target="_blank">
-                            <i class="ph ph-facebook-logo"></i>
-                        </a>
-                    {% endif %}
+                <td class="text-start">
+                    <ul class="list-inline mb-0 d-flex align-items-center gap-1 flex-wrap">
+                        {% if item.youtube %}
+                        <li class="list-inline-item">
+                                <i class="fab fa-youtube fa-sm" style="color: #FF0000;"></i>
+                        </li>
+                        {% endif %}
 
-                    {% if item.instagram %}
-                        <a href="{{item.instagram}}" target="_blank">
-                            <i class="ph ph-instagram-logo"></i>
-                        </a>
-                    {% endif %}
+                        {% if item.twitter %}
+                        <li class="list-inline-item">
+                                <i class="fab fa-twitter fa-sm" style="color: #1DA1F2;"></i>
+                        </li>
+                        {% endif %}
 
-                    {% if item.youtube %}
-                        <a href="{{item.youtube}}" target="_blank">
-                            <i class="ph ph-youtube-logo"></i>
-                        </a>
-                    {% endif %}
+                        {% if item.linkedin %}
+                        <li class="list-inline-item">
+                                <i class="fab fa-linkedin fa-sm" style="color: #0077B5;"></i>
+                        </li>
+                        {% endif %}
 
-                    {% if item.twitter %}
-                        <a href="{{item.twitter}}" target="_blank">
-                            <i class="ph ph-twitter-logo"></i>
-                        </a>
-                    {% endif %}
+                        {% if item.instagram %}
+                        <li class="list-inline-item">
+                                <i class="fab fa-instagram fa-sm" style="color: #C13584;"></i>
+                        </li>
+                        {% endif %}
 
-                    {% if item.linkedin %}
-                        <a href="{{item.linkedin}}" target="_blank">
-                            <i class="ph ph-linkedin-logo"></i>
-                        </a>
-                    {% endif %}
+                        {% if item.facebook %}
+                        <li class="list-inline-item">
+                                <i class="fab fa-facebook fa-sm" style="color: #1877F2;"></i>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </td>
+
             </tr>
         {% empty %}
             <tr>

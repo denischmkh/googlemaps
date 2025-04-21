@@ -29,6 +29,7 @@ def categoty_list_place_tm(request):
     postcode_filter = request.GET.get("postcode", "")
     country_filter = request.GET.getlist("country")  # Получаем список выбранных стран
     category_filter = request.GET.getlist("category")
+    print(category_filter)
     
 
     countries = Country.objects.all().order_by("full_name")
@@ -67,11 +68,12 @@ def categoty_list_place_tm(request):
         "city_filter": city_filter,
         "postcode_filter": postcode_filter,
         "country_filter": country_filter,
-        "category_filter": category_filter,
+        "category_filter": category_filter[0].capitalize(),
         "categories": categories,
         "countries": countries,
     }
     return render(request, 'list_place.html', context)
+
 
 def place_full_info(request, name_slug):
     place_obj = Place.objects.get(slug=name_slug)
