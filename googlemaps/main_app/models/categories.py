@@ -6,6 +6,7 @@ from unidecode import unidecode
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True, verbose_name="Category Name")
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True, verbose_name="Category Slug")
+    icon = models.CharField(null=True)
 
     class Meta:
         verbose_name = "Category"

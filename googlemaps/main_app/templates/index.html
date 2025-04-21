@@ -10,10 +10,11 @@
                         <div class="grid-item">
                             <a href="{% url 'categoty_list_place_tm' %}?category={{ item.slug }}" class="d-flex flex-column align-items-center text-decoration-none text-dark text-center">
                                 <div class="d-flex justify-content-center align-items-center rounded-circle bg-light shadow-sm p-3">
-                                    <i class="ph ph-storefront fs-1 text-secondary"></i>
+                                    <img src="{% static 'icons/'|add:item.icon %}" alt="{{ item.name }}" style="width: 40px; height: 40px;">
+
                                 </div>
                                 <div class="mt-2 fw-semibold text-break">
-                                    {{ item }} ({{ item.places.count }})
+                                    {{ item }}
                                 </div>
                             </a>
                         </div>
