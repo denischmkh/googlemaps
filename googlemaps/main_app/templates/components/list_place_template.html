@@ -1,15 +1,15 @@
-
+<div class="table-scroll-container">
 <table class="table tasks-list mb-0" style="table-layout: fixed; min-width: 1000px;">
      <thead class="bg-light" style="position: sticky; top: 0; z-index: 2;">
     <tr>
         <h1 class="text-start">{{category_filter}}</h1>
         <th style="width: 210px;" class="text-start text-nowrap">Name</th>
-        <th style="width: 50px;" class="text-start text-nowrap">Rating</th> <!-- Сделано уже -->
+        <th style="width: 55px;" class="text-start text-nowrap">Rating</th> <!-- Сделано уже -->
         <th style="width: 100px;" class="text-start text-nowrap">City</th>
         <th style="width: 110px;" class="text-start text-nowrap">Place Type</th>
-        <th style="width: 95px;" class="text-start text-nowrap">Phone</th>
-        <th style="width: 90px;" class="text-start text-nowrap">Email</th>
-        <th style="width: 60px;" class="text-start text-nowrap">Website</th>
+        <th style="width: 60px;" class="text-start text-nowrap">Phone</th>
+        <th style="width: 60px;" class="text-start text-nowrap">Email</th>
+        <th style="width: 65px;" class="text-start text-nowrap">Website</th>
         <th style="width: 115px;" class="text-start text-nowrap">Socials</th>
     </tr>
 </thead>
@@ -21,7 +21,7 @@
                     {{ item.name|default:"-" }}
                 </a>
             </td>
-            <td class="text-start text-nowrap">{{ item.rating|default:"-" }}</td>
+            <td class="text-start text-nowrap" style="width: 55px;">{{ item.rating|default:"-" }}</td>
             <td class="text-start">{{ item.city }}</td>
             <td class="text-start">{{ item.place_type|default:"-" }}</td>
             <td class="text-center">
@@ -46,7 +46,7 @@
                     </div>
                 {% endif %}
             </td>
-            <td class="text-start px-2" style="width: 50px;">
+            <td class="text-start px-2" style="width: 65px;">
                 {% if item.website %}
                     <a href="{{ item.website }}">
                         <i class="ph ph-link"></i>
@@ -94,26 +94,22 @@
             <td colspan="12" class="text-center">No places available</td>
         </tr>
     {% endfor %}
+    </tbody>
 </table>
+</div>
 <style>
-    /* Общий стиль для всех ячеек таблицы */
-    .table th, .table td {
-        border-right: 1px solid #dee2e6;
+    .table-scroll-container {
+        overflow-x: auto;
+        width: 100%;
     }
 
-    /* Удалим правую границу у последнего столбца */
-    .table th:last-child,
-    .table td:last-child {
-        border-right: none;
-    }
-
-    /* Границы между строками (если нужно) */
-    .table tr {
-        border-bottom: 1px solid #dee2e6;
+    /* Оставляем стандартный скролл */
+    body, html {
+        overflow-x: auto;
     }
 </style>
 
-</tbody>
+
 
 
 
