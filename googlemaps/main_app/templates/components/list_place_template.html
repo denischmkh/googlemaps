@@ -12,6 +12,15 @@
         <th style="width: 160px;" class="text-start">Socials</th>
     </tr>
 </thead>
+
+    <style>
+    th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.875rem; /* можно уменьшить шрифт чуть-чуть */
+    }
+</style>
 <tbody>
     {% for item in places %}
         <tr>
