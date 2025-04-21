@@ -1,26 +1,18 @@
+<div class="table-responsive">
 <table class="table tasks-list" style="table-layout: fixed;">
     <thead>
     <tr>
         <h1>{{category_filter}}</h1>
-        <th style="width: 160px;" class="text-start">Name</th>
-        <th style="width: 90px;" class="text-start">Rating</th> <!-- Сделано уже -->
-        <th style="width: 100px;" class="text-start">City</th>
-        <th style="width: 110px;" class="text-start">Place Type</th>
-        <th style="width: 95px;" class="text-start">Phone</th>
-        <th style="width: 90px;" class="text-start">Email</th>
-        <th style="width: 70px;" class="text-start">Website</th>
-        <th style="width: 160px;" class="text-start">Socials</th>
+        <th style="width: 160px;" class="text-start text-nowrap">Name</th>
+        <th style="width: 90px;" class="text-start text-nowrap">Rating</th> <!-- Сделано уже -->
+        <th style="width: 100px;" class="text-start text-nowrap">City</th>
+        <th style="width: 110px;" class="text-start text-nowrap">Place Type</th>
+        <th style="width: 95px;" class="text-start text-nowrap">Phone</th>
+        <th style="width: 90px;" class="text-start text-nowrap">Email</th>
+        <th style="width: 70px;" class="text-start text-nowrap">Website</th>
+        <th style="width: 160px;" class="text-start text-nowrap">Socials</th>
     </tr>
 </thead>
-
-    <style>
-    th {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 0.875rem; /* можно уменьшить шрифт чуть-чуть */
-    }
-</style>
 <tbody>
     {% for item in places %}
         <tr>
@@ -150,3 +142,9 @@
         {% endif %}
     </ul>
 </nav>
+</div>
+<style>
+    th {
+        white-space: nowrap;
+    }
+</style>
