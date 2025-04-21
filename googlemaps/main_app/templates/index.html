@@ -9,10 +9,7 @@
                     {% for item in categories %}
                         <div class="grid-item">
                             <a href="{% url 'categoty_list_place_tm' %}?category={{ item.slug }}" class="d-flex flex-column align-items-center text-decoration-none text-dark text-center">
-                                <div class="d-flex justify-content-center align-items-center rounded-circle bg-light shadow-sm p-3">
-                                    <img src="{% static 'icons/'|add:item.icon %}" alt="{{ item.name }}" style="width: 40px; height: 40px;">
-
-                                </div>
+                                <img src="{% static 'icons/'|add:item.icon %}" alt="{{ item.name }}" style="width: 40px; height: 40px;">
                                 <div class="mt-2 fw-semibold text-break">
                                     {{ item }}
                                 </div>
