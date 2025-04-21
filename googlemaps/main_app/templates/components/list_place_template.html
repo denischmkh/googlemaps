@@ -4,9 +4,7 @@
         <h1>{{category_filter}}</h1>
         <th style="width: 160px;" class="text-start">Name</th>
         <th style="width: 90px;" class="text-start">Rating</th> <!-- Сделано уже -->
-        <th style="width: 90px;" class="text-start">State</th>
         <th style="width: 120px;" class="text-start">City</th>
-        <th style="width: 120px;" class="text-start">Postcode</th>
         <th style="width: 140px;" class="text-start">Place Type</th>
         <th style="width: 95px;" class="text-start">Phone</th>
         <th style="width: 90px;" class="text-start">Email</th>
@@ -23,9 +21,7 @@
                 </a>
             </td>
             <td class="text-start">{{ item.rating|default:"-" }}</td> <!-- Выравнивание по левому краю -->
-            <td class="text-start">{{ item.city.state }}</td>
             <td class="text-start">{{ item.city }}</td>
-            <td class="text-start">{{ item.postcode|default:"-" }}</td>
             <td class="text-start">{{ item.place_type|default:"-" }}</td>
             <td class="text-center">
                 {% if item.phone %}
