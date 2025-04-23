@@ -18,7 +18,7 @@ import psycopg2
 
 # Подключение к базе данных
 connection = psycopg2.connect(
-    dbname="bar_dump",
+    dbname="airport_dump",
     user="postgres",
     password="denis2004",
     host="localhost"
@@ -31,7 +31,7 @@ connection = psycopg2.connect(
 cursor = connection.cursor()
 # Запрос к таблице
 # for table in tables:
-query = f"select * from place_bar;"
+query = f"select * from parser_app_place_airport;"
 
 # Выполнение запроса
 cursor.execute(query)
