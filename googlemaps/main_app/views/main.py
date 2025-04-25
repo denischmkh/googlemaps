@@ -81,7 +81,8 @@ def categoty_list_place_tm(request):
         "categories": categories,
         "countries": countries,
         'category_filter': category_filter[0],
-        'selected_country_unslug': Country.objects.filter(slug=country_filter[0]).first() if country_filter else None
+        'selected_country_unslug': Country.objects.filter(slug=country_filter[0]).first() if country_filter else None,
+        'keywords_filter': keywords_filter
     }
     return render(request, 'list_place.html', context)
 
