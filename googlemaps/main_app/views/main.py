@@ -14,7 +14,10 @@ def index(request):
     for category in category_names:
         category.save()
 
-    context = {"categories": category_names}
+    countries = Country.objects.all().order_by("full_name")
+
+    context = {"categories": category_names,
+               "countries": countries,}
     return render(request, 'index.html', context)
 
 from django.core.paginator import Paginator
@@ -45,7 +48,7 @@ def categoty_list_place_tm(request):
     places = Place.objects.all()
 
     # Применяем фильтры
-    if category_filter:
+    if category_filter[0] != 'all':
         places = places.filter(category__slug__in=category_filter)
 
     if country_filter:
@@ -113,13 +116,15 @@ def place_full_info(request, name_slug):
         open_hours = json.loads(place_obj.open_hours.replace("'", '"'))
     except (JSONDecodeError, AttributeError, TypeError):
         open_hours = {}
+    countries = Country.objects.all().order_by("full_name")
 
     context = {"place_obj": place_obj,
                'parsed_about': parsed_items,
                'open_hours': open_hours,
                'selected_category': place_obj.category.name,
                'category_filter': place_obj.category.slug,
-               'name': place_obj.name
+               'name': place_obj.name,
+               "countries": countries,
     }
     return render(request, 'full_info2.html', context)
 

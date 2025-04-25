@@ -37,7 +37,27 @@
         <i class="bi bi-shop fs-1 me-3"></i>
         <div class="flex-fill text-start">
           <h4 class="mb-0">{{ place_obj.name|default:"Unknown" }}</h4>
-          <span class="text-white-50">{{ place_obj.city.country|default:"Unknown" }}, {{ place_obj.city.state|default:"Unknown" }}, {{ place_obj.city|default:"Unknown" }}, {{ place_obj.postcode|default:"Unknown" }}, {{ place_obj.address|default:"Unknown" }}</span>
+          <span class="text-white-50">
+            {% if place_obj.city.country %}
+                {{ place_obj.city.country }}
+            {% endif %}
+
+            {% if place_obj.city.state %}
+                , {{ place_obj.city.state }}
+            {% endif %}
+
+            {% if place_obj.city %}
+                , {{ place_obj.city }}
+            {% endif %}
+
+            {% if place_obj.postcode %}
+                , {{ place_obj.postcode }}
+            {% endif %}
+
+            {% if place_obj.address %}
+                , {{ place_obj.address }}
+            {% endif %}
+        </span>
         </div>
       </div>
     </div>
