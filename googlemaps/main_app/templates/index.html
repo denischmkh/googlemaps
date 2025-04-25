@@ -33,5 +33,22 @@
             justify-content: center;
             margin: 25px;
         }
+        .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Задаем авто-колонки с минимальной шириной 150px */
+    gap: 16px; /* Расстояние между элементами */
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Для экранов шириной меньше 768px: два элемента в ряду */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Для экранов шириной меньше 480px: один элемент в ряду */
+    }
+}
     </style>
 {% endblock content_area %}
