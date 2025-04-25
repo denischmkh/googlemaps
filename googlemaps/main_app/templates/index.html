@@ -11,7 +11,7 @@
                             <a href="{% url 'categoty_list_place_tm' %}?category={{ item.slug }}" class="d-flex flex-column align-items-center text-decoration-none text-dark text-center">
                                 <img src="{% static 'icons/'|add:item.icon %}" alt="{{ item.name }}" style="width: 70px; height: 70px;">
                                 <div class="mt-2 fw-semibold text-break">
-                                    {{ item }}
+                                    {{ item }}s
                                 </div>
                             </a>
                         </div>
@@ -31,6 +31,7 @@
         .grid-item {
             display: flex;
             justify-content: center;
+            margin: 25px;
         }
     </style>
 {% endblock content_area %}

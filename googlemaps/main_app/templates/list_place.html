@@ -3,75 +3,136 @@
 
 {% block content_area %}
 	<div class="card">
-		<div class="card-header pb-0">
-			<div class="search-filters mb-3">
-				<form method="get" action="{% url 'categoty_list_place_tm' %}">
-					<div class="row g-5 align-items-stretch">
-						<!--  Поле ввода для категории с чекбоксами -->
-						<div class="col-auto">
-							<div class="dropdown h-100">
-								<button class="btn btn-outline-secondary dropdown-toggle h-100" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-									Select Category
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
-									{% for category in categories %}
-										<li>
-											<div class="form-check my-1">
-												<input class="form-check-input ms-2" type="checkbox" name="category" value="{{ category.slug }}" id="category-{{ category.id }}"
-													   {% if category.name in category_filter %}checked{% endif %}>
-												<label class="form-check-label ms-2" for="category-{{ category.id }}">
-													{{ category.name }}
-												</label>
-											</div>
-										</li>
-									{% endfor %}
-								</ul>
-							</div>
-						</div>
-
-
-						<!-- Поле ввода для страны с чекбоксами -->
-						<div class="col-auto">
-							<div class="dropdown h-100">
-								<button class="btn btn-outline-secondary dropdown-toggle h-100" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-									Select Country
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
-									{% for country in countries %}
-										<li>
-											<div class="form-check  my-1">
-												<input class="form-check-input ms-2" type="checkbox" name="country" value="{{ country.slug }}" id="country-{{ country.id }}"
-													   {% if country.slug in country_filter %}checked{% endif %}>
-												<label class="form-check-label ms-2" for="country-{{ country.id }}">
-													{{ country.full_name }}
-												</label>
-											</div>
-										</li>
-									{% endfor %}
-								</ul>
-							</div>
-						</div>
-					
-						<!-- Поля ввода для поиска -->
-						<div class="col-auto">
-							<input type="text" name="state" class="form-control h-100" placeholder="Search by State" value="{{ request.GET.state }}">
-						</div>
-						<div class="col-auto">
-							<input type="text" name="city" class="form-control h-100" placeholder="Search by City" value="{{ request.GET.city }}">
-						</div>
-						<div class="col-auto">
-							<input type="text" name="postcode" class="form-control h-100" placeholder="Search by Postcode" value="{{ request.GET.postcode }}">
-						</div>
-						<div class="col-auto">
-							<button type="submit" class="btn btn-primary h-100">Search</button>
-						</div>
-					</div>				
-				</form>
-			</div>			
-		</div>
 
 		<div class="card-body">
 			{% include "components/list_place_template.html" %}
 		</div>
 	</div>
 {% endblock content_area %}
+
+{% block filters %}
+<form method="get" action="{% url 'categoty_list_place_tm' %}" class="px-2" id="filterForm">
+
+        <div class="mb-2 sidebar-resize-hide">
+            <label class="form-label small mb-1 text-light" for="cityInput">City</label>
+            <input type="text" name="city" class="form-control bg-dark text-light"
+                   id="cityInput" placeholder="e.g. Odesa" value="{{ city_filter }}">
+        </div>
+
+        <div class="mb-2 sidebar-resize-hide">
+            <label class="form-label small mb-1 text-light" for="keywordsInput">Agent Name</label>
+            <input type="text" name="keywords" class="form-control bg-dark text-light"
+                   id="keywordsInput" placeholder="e.g. agent name" value="{{ keywords }}">
+        </div>
+
+        <div class="mb-3 sidebar-resize-hide">
+            <label class="form-label small mb-1 text-light" for="postcodeInput">Postcode</label>
+            <input type="text" name="postcode" class="form-control bg-dark text-light"
+                   id="postcodeInput" placeholder="e.g. 12345" value="{{ postcode_filter }}">
+            <input type="hidden" name="category" id="categoryHiddenInput" value="{{ category_filter }}">
+        </div>
+
+        <div class="col-auto mb-2 sidebar-resize-hide">
+            <div class="dropdown h-100">
+                <button class="btn btn-outline-light text-light dropdown-toggle h-100" style="width: 100%;" id="dropdownMenuCountry"
+                        data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    {% if country_filter %}
+                        {{ selected_country_unslug.full_name }}
+                    {% else %}
+                        Select Country
+                    {% endif %}
+
+                </button>
+                <ul class="dropdown-menu bg-dark text-light border-white" aria-labelledby="dropdownMenuCountry"
+                    style="max-height: 300px; overflow-y: auto;" id="countryDropdown">
+                    {% for country in countries %}
+                        <li>
+                            <div class="form-check my-1 text-light px-3">
+                                <input class="form-check-input ms-2 country-radio" type="radio" name="country"
+                                       value="{{ country }}" id="country-{{ forloop.counter }}"
+                                       {% if country in country_filter %}checked{% endif %}>
+                                <label class="form-check-label ms-2" for="country-{{ forloop.counter }}">
+                                    {{ country }}
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="mt-3 sidebar-resize-hide">
+            <button type="submit" class="btn btn-sm btn-primary w-100">Apply Filters</button>
+        </div>
+
+        <!-- Кнопка для очистки фильтров -->
+        <div class="mt-2 sidebar-resize-hide">
+            <button type="button" id="clearFiltersButton" class="btn btn-sm btn-primary w-100">Clear Filters</button>
+        </div>
+
+    </form>
+
+<script>
+    // Находим все радиокнопки с классом .country-radio
+    document.querySelectorAll('.country-radio').forEach(function(radioButton) {
+        radioButton.addEventListener('change', function() {
+            // Обновляем текст кнопки с выбранной страной
+            const selectedCountry = radioButton.value;
+            const button = document.getElementById('dropdownMenuCountry');
+            button.textContent = selectedCountry;  // Меняем текст кнопки на выбранную страну
+        });
+    });
+</script>
+
+<script>
+    document.querySelectorAll('input[name="source"]').forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            const selectedSources = Array.from(document.querySelectorAll('input[name="source"]:checked'))
+                .map(cb => cb.value); // Получаем значения всех отмеченных чекбоксов
+
+            const button = document.getElementById('dropdownMenuSource');
+
+            if (selectedSources.length === 0) {
+                button.textContent = 'Select Source';
+            } else if (selectedSources.length === 1) {
+                button.textContent = selectedSources[0];
+            } else {
+                button.textContent = `${selectedSources.length} selected`;
+            }
+        });
+    });
+
+    // Обновим кнопку сразу при загрузке страницы, если есть выбранные значения
+    document.addEventListener('DOMContentLoaded', function () {
+        const event = new Event('change');
+        const checkboxes = document.querySelectorAll('input[name="source"]:checked');
+        if (checkboxes.length > 0) {
+            checkboxes[0].dispatchEvent(event); // триггерим для обновления текста
+        }
+    });
+</script>
+<script>
+    document.getElementById('clearFiltersButton').addEventListener('click', function () {
+        const form = document.getElementById('filterForm');
+
+        // Сброс текстовых инпутов
+        form.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+
+        // Сброс радиокнопок
+        form.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+
+        // Сброс чекбоксов
+        form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+
+        // Сброс текста кнопок dropdown'ов
+        document.getElementById('dropdownMenuCountry').textContent = 'Select Country';
+        document.getElementById('dropdownMenuSource').textContent = 'Select Source';
+
+        // Отправка формы (если нужно сразу обновить страницу)
+        form.submit();
+
+        // Если не нужно отправлять форму, просто убери строку выше
+    });
+</script>
+{% endblock filters %}

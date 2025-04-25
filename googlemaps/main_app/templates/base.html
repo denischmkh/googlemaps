@@ -541,6 +541,15 @@
 
 					</ul>
 				</div>
+				<div class="sidebar-section">
+
+
+    <style>
+        /* Стили остаются прежними */
+    </style>
+    {% block filters %}
+	{% endblock filters %}
+				</div>
 				<!-- /main navigation -->
 
 			</div>
@@ -576,10 +585,17 @@
 					<div class="page-header-content d-lg-flex border-top">
 						<div class="d-flex">
 							<div class="breadcrumb py-2">
-								<a href="{% url 'index' %}" class="breadcrumb-item"><i class="ph-house"></i></a>
-								{% block breadcrumb %}								
-									
-								{% endblock breadcrumb %}
+									<div class="breadcrumb">
+                                    <a href="{% url 'index' %}" class="breadcrumb-item px-2"><i class="ph-house me-2"></i> Home</a>
+										{% if selected_category %}
+                                    <a href="{% url 'categoty_list_place_tm' %}?category={{ category_filter }}" class="breadcrumb-item py-2">
+										{{ selected_category }}
+									</a>
+										{% endif %}
+										{% if name %}
+                                    <span class="breadcrumb-item active py-2">{{name}}</span>
+										{% endif %}
+                                </div>
 							</div>
 
 							<a href="#breadcrumb_elements" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">

@@ -27,10 +27,12 @@ def categoty_list_place_tm(request):
     state_filter = request.GET.get("state", "")
     city_filter = request.GET.get("city", "")
     postcode_filter = request.GET.get("postcode", "")
-    country_filter = request.GET.getlist("country")  # Получаем список выбранных стран
+    country_filter = [slugify(el) for el in request.GET.getlist("country")]  # Получаем список выбранных стран
     category_filter = request.GET.getlist("category")
-    print(category_filter)
-    
+    keywords_filter = request.GET.get("keywords")
+
+
+
 
     countries = Country.objects.all().order_by("full_name")
 
@@ -58,14 +60,16 @@ def categoty_list_place_tm(request):
     if postcode_filter:
         places = places.filter(postcode__icontains=postcode_filter)
 
+    if keywords_filter:
+        places = places.filter(name__icontains=keywords_filter)
+
     # Пагинация
     paginator = Paginator(places, items_per_page)
     page_obj = paginator.get_page(page_number)
 
-    selected_categories = []
-    for el in category_filter:
-        category = Category.objects.filter(slug=el).first()
-        selected_categories.append(category.name)
+
+    selected_category = Category.objects.filter(slug=category_filter[0]).first()
+
 
     context = {
         "places": page_obj,
@@ -73,9 +77,11 @@ def categoty_list_place_tm(request):
         "city_filter": city_filter,
         "postcode_filter": postcode_filter,
         "country_filter": country_filter,
-        "category_filter": selected_categories,
+        "selected_category": selected_category,
         "categories": categories,
         "countries": countries,
+        'category_filter': category_filter[0],
+        'selected_country_unslug': Country.objects.filter(slug=country_filter[0]).first() if country_filter else None
     }
     return render(request, 'list_place.html', context)
 
@@ -109,5 +115,13 @@ def place_full_info(request, name_slug):
 
     context = {"place_obj": place_obj,
                'parsed_about': parsed_items,
-               'open_hours': open_hours}
+               'open_hours': open_hours,
+               'selected_category': place_obj.category.name,
+               'category_filter': place_obj.category.slug,
+               'name': place_obj.name
+    }
     return render(request, 'full_info2.html', context)
+
+
+def get_agents(request):
+    return render(request, 'agent_profile.html')
