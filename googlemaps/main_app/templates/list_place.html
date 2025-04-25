@@ -18,7 +18,7 @@
 										<li>
 											<div class="form-check my-1">
 												<input class="form-check-input ms-2" type="checkbox" name="category" value="{{ category.slug }}" id="category-{{ category.id }}"
-													   {% if category.slug in category_filter %}checked{% endif %}>
+													   {% if category.name in category_filter %}checked{% endif %}>
 												<label class="form-check-label ms-2" for="category-{{ category.id }}">
 													{{ category.name }}
 												</label>

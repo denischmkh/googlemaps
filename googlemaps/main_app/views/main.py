@@ -62,13 +62,18 @@ def categoty_list_place_tm(request):
     paginator = Paginator(places, items_per_page)
     page_obj = paginator.get_page(page_number)
 
+    selected_categories = []
+    for el in category_filter:
+        category = Category.objects.filter(slug=el).first()
+        selected_categories.append(category.name)
+
     context = {
         "places": page_obj,
         "state_filter": state_filter,
         "city_filter": city_filter,
         "postcode_filter": postcode_filter,
         "country_filter": country_filter,
-        "category_filter": category_filter[0].capitalize(),
+        "category_filter": selected_categories,
         "categories": categories,
         "countries": countries,
     }
