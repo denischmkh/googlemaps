@@ -22,7 +22,7 @@
                 </a>
             </td>
             <td class="text-start text-nowrap" style="width: 55px;">{{ item.rating|default:"-" }}</td>
-            <td class="text-start">{{ item.city }}</td>
+            <td class="text-start">{{ item.city|default:"-" }}</td>
             <td class="text-start">{{ item.place_type|default:"-" }}</td>
             <td class="text-center">
                 {% if item.phone %}
