@@ -73,8 +73,10 @@ def categoty_list_place_tm(request):
     paginator = Paginator(places, items_per_page)
     page_obj = paginator.get_page(page_number)
 
-
-    selected_category = Category.objects.filter(slug=category_filter[0]).first()
+    if category_filter[0] != 'all':
+        selected_category = Category.objects.filter(slug=category_filter[0]).first()
+    else:
+        selected_category = 'All Categories'
 
 
     context = {
