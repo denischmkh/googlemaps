@@ -16,8 +16,10 @@ def index(request):
 
     countries = Country.objects.all().order_by("full_name")
 
+
     context = {"categories": category_names,
-               "countries": countries,}
+               "countries": countries,
+               'selected_category': 'All Categories'}
     return render(request, 'index.html', context)
 
 from django.core.paginator import Paginator
