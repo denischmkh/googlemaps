@@ -647,9 +647,13 @@
 									<div class="breadcrumb">
                                     <a href="{% url 'index' %}" class="breadcrumb-item px-2"><i class="ph-house me-2"></i> Home</a>
 										{% if selected_category %}
-                                    <a href="{% url 'categoty_list_place_tm' %}?category={{ category_filter }}" class="breadcrumb-item py-2">
-										{{ selected_category }}
-									</a>
+									{% if name %}
+										<a href="{% url 'categoty_list_place_tm' %}?category={{ category_filter }}" class="breadcrumb-item py-2">
+											{{ selected_category }}
+										</a>
+									{% else %}
+										<span class="breadcrumb-item active py-2">{{selected_category}}</span>
+									{% endif %}
 										{% endif %}
 										{% if name %}
                                     <span class="breadcrumb-item active py-2">{{name}}</span>
