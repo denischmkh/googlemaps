@@ -8,7 +8,7 @@
                 <div class="grid-container">
                     {% for item in categories %}
                         <div class="grid-item">
-                            <a href="{% url 'categoty_list_place_tm' %}?category={{ item.slug }}" class="d-flex flex-column align-items-center text-decoration-none text-dark text-center">
+                            <a href="{% url 'categoty_list_place_tm' category=item.slug %}" class="d-flex flex-column align-items-center text-decoration-none text-dark text-center">
                                 <img src="{% static 'icons/'|add:item.icon %}" alt="{{ item.name }}" style="width: 70px; height: 70px;">
                                 <div class="mt-2 fw-semibold text-break">
                                     {{ item }}s

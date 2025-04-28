@@ -24,7 +24,9 @@ def index(request):
 
 from django.core.paginator import Paginator
 from django.db.models import Count
-def categoty_list_place_tm(request):
+def categoty_list_place_tm(request, category=None):
+    if category is None:
+        category = 'all'
     page_number = request.GET.get("page", 1)
     items_per_page = 25
     
@@ -33,8 +35,8 @@ def categoty_list_place_tm(request):
     city_filter = request.GET.get("city", "")
     postcode_filter = request.GET.get("postcode", "")
     country_filter = [slugify(el) for el in request.GET.getlist("country")]  # Получаем список выбранных стран
-    category_filter = request.GET.getlist("category")
-    print(category_filter)
+    category_filter = [category]
+    category_filter[0] = slugify(category_filter[0])
     keywords_filter = request.GET.get("keywords")
 
 
@@ -51,7 +53,7 @@ def categoty_list_place_tm(request):
     places = Place.objects.all()
 
     # Применяем фильтры
-    if category_filter[0] != 'all':
+    if category_filter[0] != 'all-categories':
         places = places.filter(category__slug__in=category_filter)
 
     if country_filter:
@@ -72,11 +74,19 @@ def categoty_list_place_tm(request):
     # Пагинация
     paginator = Paginator(places, items_per_page)
     page_obj = paginator.get_page(page_number)
+    print(category_filter)
 
-    if category_filter[0] != 'all':
-        selected_category = Category.objects.filter(slug=category_filter[0]).first().name
+    if category_filter[0] != 'all-categories':
+        selected_category = Category.objects.filter(slug=slugify(category_filter[0])).first()
+        selected_category_name = selected_category.name
+        selected_category = selected_category.slug
+
     else:
-        selected_category = 'All Categories'
+        selected_category = 'all-categories'
+        selected_category_name = 'All categories'
+
+
+
 
 
     context = {
@@ -86,6 +96,7 @@ def categoty_list_place_tm(request):
         "postcode_filter": postcode_filter,
         "country_filter": country_filter,
         "selected_category": selected_category,
+        'selected_category_name': selected_category_name,
         "categories": categories,
         "countries": countries,
         'category_filter': category_filter[0],
@@ -126,7 +137,8 @@ def place_full_info(request, name_slug):
     context = {"place_obj": place_obj,
                'parsed_about': parsed_items,
                'open_hours': open_hours,
-               'selected_category': place_obj.category.name,
+               'selected_category': slugify(place_obj.category.name),
+               'selected_category_name': place_obj.category.name,
                'category_filter': place_obj.category.slug,
                'name': place_obj.name,
                "countries": countries,

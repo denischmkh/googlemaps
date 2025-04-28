@@ -547,7 +547,7 @@
     <style>
         /* Стили остаются прежними */
     </style>
-    <form method="get" action="{% url 'categoty_list_place_tm' %}" class="px-2" id="filterForm">
+    <form method="get" action="{% url 'categoty_list_place_tm' category=selected_category %}" class="px-2" id="filterForm">
 
         <div class="mb-2 sidebar-resize-hide">
             <label class="form-label small mb-1 text-light" for="cityInput">City</label>
@@ -565,7 +565,7 @@
             <label class="form-label small mb-1 text-light" for="postcodeInput">Postcode</label>
             <input type="text" name="postcode" class="form-control bg-dark text-light"
                    id="postcodeInput" placeholder="e.g. 12345" value="{{ postcode_filter }}">
-            <input type="hidden" name="category" id="categoryHiddenInput" value="{% if category_filter %}{{ category_filter }}{% else %}all{% endif %}">
+            {% if category_filter %}<input type="hidden" name="category" id="categoryHiddenInput" value="{% if category_filter %}{{ category_filter }}{% else %}all{% endif %}">{% endif %}
         </div>
 
         <div class="col-auto mb-2 sidebar-resize-hide">
@@ -648,11 +648,11 @@
                                     <a href="{% url 'index' %}" class="breadcrumb-item px-2"><i class="ph-house me-2"></i> Home</a>
 										{% if selected_category %}
 									{% if name %}
-										<a href="{% url 'categoty_list_place_tm' %}?category={{ category_filter }}" class="breadcrumb-item py-2">
-											{{ selected_category }}
+										<a href="{% url 'categoty_list_place_tm' category=selected_category %}" class="breadcrumb-item py-2">
+											{{ selected_category_name }}
 										</a>
 									{% else %}
-										<span class="breadcrumb-item active py-2">{{selected_category}}</span>
+										<span class="breadcrumb-item active py-2">{{selected_category_name}}</span>
 									{% endif %}
 										{% endif %}
 										{% if name %}
