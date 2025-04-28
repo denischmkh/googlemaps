@@ -74,7 +74,7 @@ def categoty_list_place_tm(request):
     page_obj = paginator.get_page(page_number)
 
     if category_filter[0] != 'all':
-        selected_category = Category.objects.filter(slug=category_filter[0]).first()
+        selected_category = Category.objects.filter(slug=category_filter[0]).first().name
     else:
         selected_category = 'All Categories'
 
