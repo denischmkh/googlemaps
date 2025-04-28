@@ -17,7 +17,7 @@
     {% for item in places %}
         <tr>
             <td class="text-start">
-                <a href="{% url 'place_full_info' item.slug %}" target="_blank">
+                <a href="{% url 'place_full_info' item.slug %}">
                     {{ item.name|default:"-" }}
                 </a>
             </td>
