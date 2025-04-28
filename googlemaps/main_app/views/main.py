@@ -34,6 +34,7 @@ def categoty_list_place_tm(request):
     postcode_filter = request.GET.get("postcode", "")
     country_filter = [slugify(el) for el in request.GET.getlist("country")]  # Получаем список выбранных стран
     category_filter = request.GET.getlist("category")
+    print(category_filter)
     keywords_filter = request.GET.get("keywords")
 
 
