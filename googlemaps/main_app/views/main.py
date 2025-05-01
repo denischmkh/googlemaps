@@ -29,8 +29,7 @@ def categoty_list_place_tm(request, category=None):
         category = 'all'
     page_number = request.GET.get("page", 1)
     items_per_page = 25
-    
-    # Получаем фильтры
+
     state_filter = request.GET.get("state", "")
     city_filter = request.GET.get("city", "")
     postcode_filter = request.GET.get("postcode", "")

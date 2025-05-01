@@ -42,18 +42,14 @@ column_names = [desc[0] for desc in cursor.description]
 # Получение всех строк из таблицы
 rows = cursor.fetchall()
 
-
-# Проходим по всем строкам данных
 for row in rows:
     row_dict = dict(zip(column_names, row))
 
-    # Удаляем поле 'id', если оно есть
     if 'id' in row_dict:
         del row_dict['id']
 
     pprint(row_dict)
 
-    # Обработка страны
     try:
         if bool(re.fullmatch(r'[A-Z]{2} \d{5}', row_dict.get('country'))):
             raise AttributeError
