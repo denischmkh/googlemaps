@@ -380,25 +380,36 @@
 				<div class="vr d-none d-sm-block flex-shrink-0 mx-2"></div>
 
 				<li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
-					<a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
-						<div class="status-indicator-container">
-							<img src="{% static 'task_manager/img/users/face11.jpg' %}" class="w-32px h-32px rounded-pill" alt="">
-							<span class="status-indicator bg-success"></span>
-						</div>
-						<span class="d-none d-lg-inline-block mx-lg-2">{{ request.user }}</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-end">
-						{% comment %} <a href="{% url 'account_profile' %}" class="dropdown-item">
-							<i class="ph-user-circle me-2"></i>
-							My profile
+					{% if request.user.is_authenticated %}
+						<a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+							<div class="status-indicator-container">
+								<img src="{% static 'task_manager/img/users/face11.jpg' %}" class="w-32px h-32px rounded-pill" alt="">
+								<span class="status-indicator bg-success"></span>
+							</div>
+							<span class="d-none d-lg-inline-block mx-lg-2">{{ request.user }}</span>
 						</a>
-						<div class="dropdown-divider"></div>
-						<a href="{% url 'account_logout' %}" class="dropdown-item">
-							<i class="ph-sign-out me-2"></i>
-							Logout
-						</a> {% endcomment %}
-					</div>
+
+						<div class="dropdown-menu dropdown-menu-end">
+							<a href="#" class="dropdown-item">
+								<i class="ph-user-circle me-2"></i>
+								My profile
+							</a>
+							<div class="dropdown-divider"></div>
+							<a href="{% url 'logout' %}" class="dropdown-item">
+								<i class="ph-sign-out me-2"></i>
+								Logout
+							</a>
+						</div>
+					{% else %}
+						<li class="nav-item">
+							<a href="{% url 'account_signin' %}" class="navbar-nav-link navbar-nav-link-icon rounded ms-1">
+								<div class="d-flex align-items-center mx-md-1">
+								<i class="ph-user-circle"></i>
+								<span class="d-none d-md-inline-block ms-2">Login</span>
+							</div>
+							</a>
+						</li>
+					{% endif %}
 				</li>
 			</ul>
 		</div>
@@ -551,7 +562,7 @@
     <style>
         /* Стили остаются прежними */
     </style>
-    <form method="get" action="{% url 'categoty_list_place_tm' category=selected_category %}" class="px-2" id="filterForm" style="margin-left: 10px; margin-right: 10px">
+    <form method="get" action="{% url 'category_list_place_tm' category=selected_category %}" class="px-2" id="filterForm" style="margin-left: 10px; margin-right: 10px">
 
         <div class="mb-2 sidebar-resize-hide">
             <label class="form-label small mb-1 text-light" for="cityInput">City</label>
@@ -658,7 +669,7 @@
                                     <a href="{% url 'index' %}" class="breadcrumb-item px-2"><i class="ph-house me-2"></i> Home</a>
 										{% if selected_category %}
 									{% if name %}
-										<a href="{% url 'categoty_list_place_tm' category=selected_category %}" class="breadcrumb-item py-2">
+										<a href="{% url 'category_list_place_tm' category=selected_category %}" class="breadcrumb-item py-2">
 											{{ selected_category_name }}
 										</a>
 									{% else %}

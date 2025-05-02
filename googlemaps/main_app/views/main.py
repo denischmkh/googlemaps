@@ -2,11 +2,18 @@ import ast
 import json
 from json import JSONDecodeError
 from pprint import pprint
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import logout as auth_logout
 
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+from ..forms import LoginForm, SignupForm
 from ..models import *
 
 from django.http import JsonResponse
+
 
 def index(request):
     category_names = Category.objects.all()
@@ -16,15 +23,17 @@ def index(request):
 
     countries = Country.objects.all().order_by("full_name")
 
-
     context = {"categories": category_names,
                "countries": countries,
                'selected_category': 'All Categories'}
     return render(request, 'index.html', context)
 
+
 from django.core.paginator import Paginator
 from django.db.models import Count
-def categoty_list_place_tm(request, category=None):
+
+
+def category_list_place_tm(request, category=None):
     if category is None:
         category = 'all'
     page_number = request.GET.get("page", 1)
@@ -37,9 +46,6 @@ def categoty_list_place_tm(request, category=None):
     category_filter = [category]
     category_filter[0] = slugify(category_filter[0])
     keywords_filter = request.GET.get("keywords")
-
-
-
 
     countries = Country.objects.all().order_by("full_name")
 
@@ -60,10 +66,10 @@ def categoty_list_place_tm(request, category=None):
 
     if state_filter:
         places = places.filter(city__state__full_name__icontains=state_filter)
-    
+
     if city_filter:
         places = places.filter(city__full_name__icontains=city_filter)
-    
+
     if postcode_filter:
         places = places.filter(postcode__icontains=postcode_filter)
 
@@ -83,10 +89,6 @@ def categoty_list_place_tm(request, category=None):
     else:
         selected_category = 'all-categories'
         selected_category_name = 'All categories'
-
-
-
-
 
     context = {
         "places": page_obj,
@@ -141,9 +143,48 @@ def place_full_info(request, name_slug):
                'category_filter': place_obj.category.slug,
                'name': place_obj.name,
                "countries": countries,
-    }
+               }
     return render(request, 'full_info2.html', context)
 
 
-def get_agents(request):
-    return render(request, 'agent_profile.html')
+def login_page(request):
+    form = LoginForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        username = form.cleaned_data['username']  # исправлено с 'login'
+        password = form.cleaned_data['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            form.add_error(None, 'Invalid username or password.')
+    return render(request, 'account/login.html', {'form': form})
+
+def register_page(request):
+    form = SignupForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        username = form.cleaned_data['username']
+        email = form.cleaned_data['email']
+        password1 = form.cleaned_data['password1']
+        password2 = form.cleaned_data['password2']
+
+        if password1 != password2:
+            form.add_error('password2', 'Passwords do not match.')
+        elif User.objects.filter(username=username).exists():
+            form.add_error('username', 'Username already taken.')
+        elif User.objects.filter(email=email).exists():
+            form.add_error('email', 'Email already used.')
+        else:
+            user = User.objects.create(
+                username=username,
+                email=email,
+                password=make_password(password1)
+            )
+            login(request, user)
+            return redirect('index')
+
+    return render(request, 'account/signup.html', {'form': form})
+
+def logout_user(request):
+    auth_logout(request)
+    return redirect('index')

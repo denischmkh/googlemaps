@@ -18,7 +18,7 @@ import psycopg2
 
 # Подключение к базе данных
 connection = psycopg2.connect(
-    dbname="transportation_dump",
+    dbname="vape_db",
     user="postgres",
     password="denis2004",
     host="localhost"
@@ -31,7 +31,7 @@ connection = psycopg2.connect(
 cursor = connection.cursor()
 # Запрос к таблице
 # for table in tables:
-query = f"select * from place_transportation_company;"
+query = f"select * from place_vapeshop;"
 
 # Выполнение запроса
 cursor.execute(query)
