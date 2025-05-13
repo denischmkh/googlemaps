@@ -88,6 +88,10 @@
             <td class="text-start">{{ place_obj.place_type|default:"-" }}</td>
           </tr>
           <tr class="odd mb-3">
+            <td class="fw-semibold text-start" style="width: 400px;">Located in:</td>
+            <td class="text-start">{{ place_obj.located_in|default:"-" }}</td>
+          </tr>
+          <tr class="odd mb-3">
               <td class="fw-semibold text-start" style="width: 400px;">Phone:</td>
               <td class="text-start">
                 {% if place_obj.phone %}
