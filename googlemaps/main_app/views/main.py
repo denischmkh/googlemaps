@@ -144,7 +144,7 @@ def place_full_info(request, name_slug):
                'name': place_obj.name,
                "countries": countries,
                }
-    return render(request, 'full_info2.html', context)
+    return render(request, 'full_info3.html', context)
 
 
 def login_page(request):
