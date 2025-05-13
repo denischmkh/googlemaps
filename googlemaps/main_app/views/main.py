@@ -138,7 +138,7 @@ def place_full_info(request, name_slug):
     context = {"place_obj": place_obj,
                'parsed_about': parsed_items,
                'open_hours': open_hours,
-               'selected_category': slugify(place_obj.category.name),
+               'selected_category': slugify(place_obj.category.slug),
                'selected_category_name': place_obj.category.name,
                'category_filter': place_obj.category.slug,
                'name': place_obj.name,
