@@ -81,8 +81,14 @@
           </tr>
           <tr class="odd mb-3">
             <td class="fw-semibold text-start" style="width: 400px;">Rating:</td>
-            <td class="text-start">{{ place_obj.rating|default:"-" }}{% if place_obj.num_reviews %} ({{place_obj.num_reviews}} reviews) {% endif %}</td>
+            <td class="text-start">{{ place_obj.rating|default:"-" }}</td>
           </tr>
+          {% if place_obj.num_reviews %}
+          <tr class="odd mb-3">
+            <td class="fw-semibold text-start" style="width: 400px;">Reviews:</td>
+            <td class="text-start">{{place_obj.num_reviews}}</td>
+          </tr>
+          {% endif %}
           <tr class="odd mb-3">
             <td class="fw-semibold text-start" style="width: 400px;">Place Type:</td>
             <td class="text-start">{{ place_obj.place_type|default:"-" }}</td>
@@ -103,16 +109,7 @@
 </tr>
 
 
-          <tr class="odd mb-3">
-  <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
-  <td class="text-start">
-    {% if place_obj.website %}
-      <a href="{{ place_obj.website }}" target="_blank" rel="noopener noreferrer">Link</a>
-    {% else %}
-      -
-    {% endif %}
-  </td>
-</tr>
+
         </tbody>
       </table>
 
@@ -173,6 +170,16 @@
 
                     <table class="table">
         <tbody>
+        <tr class="odd mb-3">
+          <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
+          <td class="text-start">
+            {% if place_obj.website %}
+              <a href="{{ place_obj.website }}" target="_blank" rel="noopener noreferrer">Link</a>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+        </tr>
           <tr class="odd mb-3">
               <td class="fw-semibold text-start" style="width: 400px;">Phone:</td>
               <td class="text-start">
@@ -197,18 +204,7 @@
                 {% endif %}
               </td>
             </tr>
-          <tr class="odd mb-3">
-              <td class="fw-semibold text-start" style="width: 400px;">Website:</td>
-              <td class="text-start">
-                {% if place_obj.website %}
-                  <span class="badge bg-success rounded-pill">Yes</span>
-                {% elif place_obj.website == "" or place_obj.website == None %}
-                  <span class="badge bg-danger rounded-pill">No</span>
-                {% else %}
-                  -
-                {% endif %}
-              </td>
-            </tr>
+
           <tr class="odd mb-3">
               <td class="fw-semibold text-start" style="width: 400px;">Facebook:</td>
               <td class="text-start">

@@ -115,6 +115,7 @@
 
 {% load clean_url %}
 <!-- Пагинация -->
+{% if places.paginator.num_pages > 1 %}
 <nav class="d-flex justify-content-center bg-light p-3">
     <ul class="pagination" id="pagination">
         {% if places.has_previous %}
@@ -156,6 +157,7 @@
         {% endif %}
     </ul>
 </nav>
+{% endif %}
 
 <style>
     th {
